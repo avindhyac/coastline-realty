@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     pages: Page;
     posts: Post;
+    properties: Property;
     media: Media;
     categories: Category;
     users: User;
@@ -91,6 +92,7 @@ export interface Config {
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
+    properties: PropertiesSelect<false> | PropertiesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -774,6 +776,70 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "properties".
+ */
+export interface Property {
+  id: number;
+  title: string;
+  propertyId?: string | null;
+  propertySequence?: number | null;
+  listingType: 'Sale' | 'Rent' | 'Lease';
+  propertyType:
+    'Bare Land' | 'House' | 'Villa' | 'Apartment' | 'Commercial' | 'Agricultural' | 'Warehouse' | 'Mixed-Use';
+  listingStatus: 'Active' | 'Under Offer' | 'Sold' | 'Withdrawn' | 'Expired';
+  subType?: string | null;
+  featured?: boolean | null;
+  description?: string | null;
+  address: string;
+  city: string;
+  gnDivision?: string | null;
+  dsDivision?: string | null;
+  district?: string | null;
+  province?: string | null;
+  googleMapsLink?: string | null;
+  /**
+   * Paste the src URL from Google Maps > Share > Embed a map. Example: https://www.google.com/maps/embed?pb=...
+   */
+  googleMapsEmbedUrl?: string | null;
+  featuredImage?: (number | null) | Media;
+  gallery?: (number | Media)[] | null;
+  extentPerches: number;
+  bedrooms?: number | null;
+  bathrooms?: number | null;
+  frontageFt?: number | null;
+  seaView?: boolean | null;
+  pool?: boolean | null;
+  distanceToBeachM?: number | null;
+  furnishedStatus?: ('Furnished' | 'Unfurnished' | 'Partially Furnished') | null;
+  listedPriceTotal: number;
+  pricePerPerchListed?: number | null;
+  soldPriceTotal?: number | null;
+  pricePerPerchSold?: number | null;
+  negotiationMarginPct?: number | null;
+  dateListed: string;
+  dateSoldWithdrawn?: string | null;
+  daysOnMarket?: number | null;
+  listingAgentName?: string | null;
+  source?: ('Owner-direct' | 'Referral' | 'Another Agency' | 'Portal') | null;
+  commissionRatePct?: number | null;
+  commissionAmount?: number | null;
+  internalNotes?: string | null;
+  titleType?: ('Freehold' | 'Leasehold') | null;
+  deedLotNumber?: string | null;
+  surveyPlanNumber?: string | null;
+  governmentValuation?: number | null;
+  publishedAt?: string | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -969,6 +1035,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'posts';
         value: number | Post;
+      } | null)
+    | ({
+        relationTo: 'properties';
+        value: number | Property;
       } | null)
     | ({
         relationTo: 'media';
@@ -1204,6 +1274,62 @@ export interface PostsSelect<T extends boolean = true> {
         id?: T;
         name?: T;
       };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "properties_select".
+ */
+export interface PropertiesSelect<T extends boolean = true> {
+  title?: T;
+  propertyId?: T;
+  propertySequence?: T;
+  listingType?: T;
+  propertyType?: T;
+  listingStatus?: T;
+  subType?: T;
+  featured?: T;
+  description?: T;
+  address?: T;
+  city?: T;
+  gnDivision?: T;
+  dsDivision?: T;
+  district?: T;
+  province?: T;
+  googleMapsLink?: T;
+  googleMapsEmbedUrl?: T;
+  featuredImage?: T;
+  gallery?: T;
+  extentPerches?: T;
+  bedrooms?: T;
+  bathrooms?: T;
+  frontageFt?: T;
+  seaView?: T;
+  pool?: T;
+  distanceToBeachM?: T;
+  furnishedStatus?: T;
+  listedPriceTotal?: T;
+  pricePerPerchListed?: T;
+  soldPriceTotal?: T;
+  pricePerPerchSold?: T;
+  negotiationMarginPct?: T;
+  dateListed?: T;
+  dateSoldWithdrawn?: T;
+  daysOnMarket?: T;
+  listingAgentName?: T;
+  source?: T;
+  commissionRatePct?: T;
+  commissionAmount?: T;
+  internalNotes?: T;
+  titleType?: T;
+  deedLotNumber?: T;
+  surveyPlanNumber?: T;
+  governmentValuation?: T;
+  publishedAt?: T;
   generateSlug?: T;
   slug?: T;
   updatedAt?: T;

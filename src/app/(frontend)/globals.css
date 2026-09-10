@@ -123,6 +123,49 @@
   --success: oklch(78% 0.08 200deg);
   --warning: oklch(89% 0.1 75deg);
   --error: oklch(75% 0.15 25deg);
+  --coast-ink: #073f4d;
+  --coast-ink-soft: #123f4b;
+  --coast-paper: #f8f6f0;
+  --coast-sand: #d9d4ca;
+}
+
+.property-inquiry-form .container {
+  max-width: none;
+  padding-inline: 0;
+}
+
+.property-inquiry-form form > div {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.property-inquiry-form form > div > div {
+  margin-bottom: 0;
+}
+
+.property-inquiry-form input,
+.property-inquiry-form textarea,
+.property-inquiry-form select {
+  border-color: rgb(18 63 75 / 0.16);
+  background: rgb(255 255 255 / 0.62);
+  color: #26383d;
+  border-radius: 0;
+}
+
+.property-inquiry-form button[type='submit'] {
+  width: 100%;
+  border-radius: 0;
+  background: #073f4d;
+  padding-block: 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.property-inquiry-form button[type='submit']:hover {
+  background: #0b5264;
 }
 
 [data-theme='dark'] {
