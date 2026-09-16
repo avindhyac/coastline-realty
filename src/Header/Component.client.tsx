@@ -2,7 +2,7 @@
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 
 import type { Header } from '@/payload-types'
 
@@ -68,7 +68,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           <span className="block font-serif text-3xl leading-none tracking-[-0.03em] md:text-4xl">Coastline</span>
           <span className="block text-sm font-bold uppercase tracking-[0.24em] text-[#123f4b]/75">Realty</span>
         </Link>
-        <HeaderNav data={data} />
+        <Suspense fallback={null}>
+          <HeaderNav data={data} />
+        </Suspense>
       </div>
     </header>
   )

@@ -3,6 +3,7 @@ import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest, File } from '
 import { contactForm as contactFormData } from './contact-form'
 import { contact as contactPageData } from './contact-page'
 import { home } from './home'
+import { siteImages } from '@/constants/siteImages'
 import { image1 } from './image-1'
 import { image2 } from './image-2'
 import { imageHero1 } from './image-hero-1'
@@ -85,18 +86,10 @@ export const seed = async ({
   payload.logger.info(`— Seeding media...`)
 
   const [image1Buffer, image2Buffer, image3Buffer, hero1Buffer] = await Promise.all([
-    fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/3.x/templates/website/src/endpoints/seed/image-post1.webp',
-    ),
-    fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/3.x/templates/website/src/endpoints/seed/image-post2.webp',
-    ),
-    fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/3.x/templates/website/src/endpoints/seed/image-post3.webp',
-    ),
-    fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/3.x/templates/website/src/endpoints/seed/image-hero1.webp',
-    ),
+    fetchFileByURL(siteImages.aerial, 'sri-lanka-aerial-coastline.jpg'),
+    fetchFileByURL(siteImages.fishermen, 'sri-lanka-stilt-fishermen.jpg'),
+    fetchFileByURL(siteImages.lagoon, 'sri-lanka-lagoon.jpg'),
+    fetchFileByURL(siteImages.beach, 'sri-lanka-palm-beach.jpg'),
   ])
 
   const [demoAuthor, image1Doc, image2Doc, image3Doc, imageHomeDoc] = await Promise.all([
@@ -734,7 +727,7 @@ export const seed = async ({
   payload.logger.info('Seeded database successfully!')
 }
 
-async function fetchFileByURL(url: string): Promise<File> {
+async function fetchFileByURL(url: string, filename?: string): Promise<File> {
   const res = await fetch(url, {
     credentials: 'include',
     method: 'GET',
@@ -746,10 +739,12 @@ async function fetchFileByURL(url: string): Promise<File> {
 
   const data = await res.arrayBuffer()
 
+  const contentType = res.headers.get('content-type') || 'image/jpeg'
+
   return {
-    name: url.split('/').pop() || `file-${Date.now()}`,
+    name: filename || url.split('/').pop() || `file-${Date.now()}`,
     data: Buffer.from(data),
-    mimetype: `image/${url.split('.').pop()}`,
+    mimetype: contentType.split(';')[0] || 'image/jpeg',
     size: data.byteLength,
   }
 }

@@ -4,6 +4,7 @@ import type { Form as FormType } from '@payloadcms/plugin-form-builder/types'
 
 import { Media } from '@/components/Media'
 import { PropertyInquiry } from '@/components/PropertyInquiry'
+import { getPropertyDummyImages, isSeededPlaceholderMedia } from '@/utilities/propertyDummyImages'
 import configPromise from '@payload-config'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
@@ -28,9 +29,9 @@ const Feature = ({ icon, title, text }: { icon: string; title: string; text?: st
 
 const Detail = ({ label, value }: { label: string; value?: string | number | null }) =>
   value || value === 0 ? (
-    <div className="grid grid-cols-2 gap-4 text-sm">
+    <div className="text-sm">
       <dt className="text-[#26383d]/70">{label}</dt>
-      <dd className="font-medium text-[#123f4b]">{value}</dd>
+      <dd className="mt-1 font-medium leading-6 text-[#123f4b]">{value}</dd>
     </div>
   ) : null
 
@@ -50,8 +51,10 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
   if (!property) notFound()
 
   const gallery = [property.featuredImage, ...(property.gallery || [])].filter(isMedia)
+  const dummyGallery = isSeededPlaceholderMedia(property.featuredImage) ? getPropertyDummyImages(property.slug || property.id) : null
   const location = [property.city, property.district, property.province].filter(Boolean).join(', ')
   const secondary = gallery.slice(1, 4)
+  const secondaryDummyImages = dummyGallery?.slice(1, 4)
 
   return (
     <main className="bg-[#f8f6f0] text-[#26383d]">
@@ -66,12 +69,12 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
       <section className="container grid gap-8 py-8 lg:grid-cols-[1fr_0.43fr] lg:py-12">
         <div className="grid gap-3 md:grid-cols-[1fr_0.38fr]">
           <div className="relative aspect-[4/3] overflow-hidden bg-[#d9d4ca] md:aspect-auto md:min-h-[520px]">
-            {isMedia(property.featuredImage) ? <Media fill priority imgClassName="object-cover" resource={property.featuredImage} /> : <div className="flex h-full items-center justify-center">Image coming soon</div>}
+            {dummyGallery ? <img alt={property.title} className="h-full w-full object-cover" src={dummyGallery[0]} /> : isMedia(property.featuredImage) ? <Media fill priority imgClassName="object-cover" resource={property.featuredImage} /> : <div className="flex h-full items-center justify-center">Image coming soon</div>}
             <span className="absolute left-5 top-5 rounded bg-[#073f4d] px-5 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white">For {property.listingType}</span>
-            <span className="absolute bottom-5 left-5 border border-white/30 bg-black/35 px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white backdrop-blur">View gallery&nbsp;&nbsp; 1 / {Math.max(gallery.length, 1)}</span>
+            <span className="absolute bottom-5 left-5 border border-white/30 bg-black/35 px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white backdrop-blur">View gallery&nbsp;&nbsp; 1 / {Math.max(dummyGallery?.length || gallery.length, 1)}</span>
           </div>
           <div className="hidden gap-3 md:grid">
-            {secondary.map((image) => <div className="relative overflow-hidden bg-[#d9d4ca]" key={image.id}><Media fill imgClassName="object-cover" resource={image} /></div>)}
+            {secondaryDummyImages ? secondaryDummyImages.map((image, index) => <div className="relative overflow-hidden bg-[#d9d4ca]" key={image}><img alt={`${property.title} gallery image ${index + 2}`} className="h-full w-full object-cover" src={image} /></div>) : secondary.map((image) => <div className="relative overflow-hidden bg-[#d9d4ca]" key={image.id}><Media fill imgClassName="object-cover" resource={image} /></div>)}
           </div>
         </div>
 
@@ -81,11 +84,11 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
           <h1 className="mt-4 font-serif text-5xl leading-tight tracking-[-0.035em] text-[#073f4d] md:text-6xl">{property.title}</h1>
           <p className="mt-4 text-xl leading-8 text-[#26383d]/84">{property.subType || `A curated ${property.propertyType.toLowerCase()} in ${property.city}.`}</p>
           <p className="mt-7 font-serif text-4xl text-[#123f4b]">{formatPrice(property.listedPriceTotal)}</p>
-          <div className="mt-7 grid grid-cols-2 gap-4 border-b border-t border-[#123f4b]/15 py-5 text-sm sm:grid-cols-4">
+          <div className="mt-7 grid grid-cols-2 gap-x-6 gap-y-5 border-b border-t border-[#123f4b]/15 py-5 text-sm sm:grid-cols-4">
             <Detail label="Bedrooms" value={property.bedrooms} /><Detail label="Bathrooms" value={property.bathrooms} /><Detail label="Land" value={property.extentPerches ? `${property.extentPerches} Perches` : null} /><Detail label="View" value={property.seaView ? 'Ocean' : property.propertyType} />
           </div>
           <p className="mt-6 text-lg leading-8 text-[#26383d]/84">{property.description || 'More details for this listing will be added by the Coastline Realty team.'}</p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row"><a className="bg-[#073f4d] px-7 py-4 text-center text-base font-bold text-white hover:bg-[#0b5264]" href="#inquiry">Schedule a Viewing</a><a className="border border-[#123f4b]/30 px-7 py-4 text-center text-base font-bold text-[#123f4b] hover:bg-white" href={`/contact?property=${property.slug || property.id}`}>Send Inquiry</a></div>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row"><a className="inline-flex items-center justify-center rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-7 py-4 text-center text-sm font-bold uppercase tracking-[0.16em] text-white shadow-[0_14px_30px_rgba(7,63,77,0.24)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(7,63,77,0.34)]" href="#inquiry">Schedule a Viewing</a><a className="inline-flex items-center justify-center rounded-sm border border-[#123f4b]/25 bg-white/45 px-7 py-4 text-center text-sm font-bold uppercase tracking-[0.16em] text-[#123f4b] shadow-[0_10px_24px_rgba(18,63,75,0.08)] backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:bg-white" href={`/contact?property=${property.slug || property.id}`}>Send Inquiry</a></div>
         </aside>
       </section>
 
@@ -120,7 +123,7 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
           </div>
         ) : null}
 
-        <aside id="inquiry" className="rounded-sm border border-[#123f4b]/10 bg-white/70 p-6 shadow-[0_18px_60px_rgba(18,63,75,0.08)] lg:row-span-2 lg:col-start-2 lg:row-start-1">
+        <aside id="inquiry" className="rounded-sm border border-[#123f4b]/10 bg-[#fbfaf7] p-6 shadow-[0_18px_60px_rgba(18,63,75,0.08)] lg:row-span-2 lg:col-start-2 lg:row-start-1">
           <h2 className="font-serif text-3xl text-[#123f4b]">Interested in this property?</h2>
           <p className="mt-2 text-base leading-7 text-[#26383d]/80">Get in touch with our team for more details or to schedule a private viewing.</p>
           <div className="mt-5"><PropertyInquiry form={inquiryForm} /></div>
@@ -145,6 +148,13 @@ const queryPropertyBySlug = cache(async ({ slug }: { slug: string }): Promise<Pr
 
 const queryInquiryForm = cache(async (): Promise<FormType | null> => {
   const payload = await getPayload({ config: configPromise })
-  const result = await payload.find({ collection: 'forms', depth: 1, limit: 1, overrideAccess: false, pagination: false, sort: '-createdAt' })
+  const result = await payload.find({
+    collection: 'forms',
+    depth: 1,
+    limit: 1,
+    overrideAccess: false,
+    pagination: false,
+    where: { title: { equals: 'Contact Form' } },
+  })
   return (result.docs?.[0] as unknown as FormType) || null
 })

@@ -92,7 +92,7 @@ export function PropertyFilters({ activeMode, cities, filters }: Props) {
         <Checkbox label="Near Beach" name="nearBeach" checked={filters.nearBeach === 'true'} />
       </div>
 
-      <button className="mt-5 min-h-12 bg-[#073f4d] px-7 py-3 text-base font-bold text-white hover:bg-[#0b5264]" type="submit">Apply Filters</button>
+      <button className="mt-5 min-h-12 rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-8 py-3 text-sm font-bold uppercase tracking-[0.16em] text-white shadow-[0_14px_30px_rgba(7,63,77,0.22)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(7,63,77,0.32)]" type="submit">Apply Filters</button>
     </form>
   )
 }

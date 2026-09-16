@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import type { Where } from 'payload'
 
+import { HomeParallaxHero } from '@/components/HomeParallaxHero'
+import { siteImages } from '@/constants/siteImages'
 import { PropertyCard } from '@/components/PropertyCard'
 import { PropertyFilters } from '@/components/PropertyFilters'
 import { PropertyModeSelector, type PropertyMode } from '@/components/PropertyModeSelector'
@@ -129,20 +131,22 @@ export default async function PropertiesPage({ searchParams }: Args) {
 
   return (
     <main className="bg-[#f8f6f0] text-[#26383d]">
-      <section className="border-b border-[#123f4b]/10 bg-[#fbfaf7] py-20 lg:py-28">
-        <div className="container">
-          <p className="text-base font-semibold text-[#123f4b]/80">{modeCopy[activeMode].eyebrow}</p>
-          <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_0.58fr] lg:items-end">
-            <h1 className="max-w-5xl font-serif text-6xl leading-[0.95] tracking-[-0.06em] text-[#073f4d] md:text-7xl">{modeCopy[activeMode].title}</h1>
-            <p className="max-w-xl text-xl leading-9 text-[#26383d]/82">{modeCopy[activeMode].intro}</p>
-          </div>
-          <div className="mt-12 max-w-5xl">
-            <PropertyModeSelector activeMode={activeMode} />
-          </div>
-        </div>
+      <HomeParallaxHero
+        description={modeCopy[activeMode].intro}
+        eyebrow={modeCopy[activeMode].eyebrow}
+        imageUrl={siteImages.aerial}
+        primaryHref="#properties"
+        primaryLabel="Browse Listings"
+        secondaryHref="/contact"
+        secondaryLabel="Speak with an Advisor"
+        title={modeCopy[activeMode].title}
+      />
+
+      <section className="container -mt-14 relative z-10">
+        <PropertyModeSelector activeMode={activeMode} />
       </section>
 
-      <section className="container py-16 lg:py-24">
+      <section id="properties" className="container py-16 lg:py-24">
         <div className="mb-10">
           <PropertyFilters activeMode={activeMode} cities={cities} filters={params || {}} />
         </div>

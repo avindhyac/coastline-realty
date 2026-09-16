@@ -10,6 +10,7 @@ import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
 
 import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
+import { cn } from '@/utilities/ui'
 
 export type FormBlockType = {
   blockName?: string
@@ -21,12 +22,16 @@ export type FormBlockType = {
 
 export const FormBlock: React.FC<
   {
+    containerClassName?: string
+    formShellClassName?: string
     id?: string
   } & FormBlockType
 > = (props) => {
   const {
+    containerClassName,
     enableIntro,
     form: formFromProps,
+    formShellClassName,
     form: { id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel } = {},
     introContent,
   } = props
@@ -114,11 +119,11 @@ export const FormBlock: React.FC<
   )
 
   return (
-    <div className="container lg:max-w-[48rem]">
+    <div className={cn('container lg:max-w-[48rem]', containerClassName)}>
       {enableIntro && introContent && !hasSubmitted && (
         <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
       )}
-      <div className="p-4 lg:p-6 border border-border rounded-[0.8rem]">
+      <div className={cn('p-4 lg:p-6 border border-border rounded-[0.8rem]', formShellClassName)}>
         <FormProvider {...formMethods}>
           {!isLoading && hasSubmitted && confirmationType === 'message' && (
             <RichText data={confirmationMessage} />
@@ -151,7 +156,7 @@ export const FormBlock: React.FC<
                   })}
               </div>
 
-              <Button form={formID} type="submit" variant="default">
+              <Button className="h-auto rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-8 py-4 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-[0_14px_30px_rgba(7,63,77,0.24)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(7,63,77,0.34)]" form={formID} type="submit" variant="default">
                 {submitButtonLabel}
               </Button>
             </form>

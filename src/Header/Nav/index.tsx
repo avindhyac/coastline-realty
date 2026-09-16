@@ -9,7 +9,7 @@ import { usePathname, useSearchParams } from 'next/navigation'
 
 const navLinkClass = (active: boolean) =>
   [
-    'min-h-11 px-1 py-2 text-base font-semibold transition hover:text-[#0b5264]',
+    'inline-flex min-h-12 items-center px-1 py-2 text-base font-semibold leading-none transition hover:text-[#0b5264]',
     active ? 'border-b-2 border-[#073f4d] text-[#073f4d]' : 'text-[#073f4d]/82',
   ].join(' ')
 
@@ -35,11 +35,11 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = () => {
       </nav>
 
       {isPropertyDetail ? (
-        <a className="hidden min-h-12 items-center bg-[#073f4d] px-5 py-3 text-base font-bold text-white hover:bg-[#0b5264] md:inline-flex" href="#inquiry">
+        <a className="hidden min-h-12 items-center self-center rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-3 text-sm font-bold uppercase leading-none tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(7,63,77,0.3)] md:ml-4 md:inline-flex lg:ml-7" href="#inquiry">
           Schedule Viewing
         </a>
       ) : (
-        <Link className="hidden min-h-12 items-center bg-[#073f4d] px-5 py-3 text-base font-bold text-white hover:bg-[#0b5264] md:inline-flex" href="/contact">
+        <Link className="hidden min-h-12 items-center self-center rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-3 text-sm font-bold uppercase leading-none tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(7,63,77,0.3)] md:ml-4 md:inline-flex lg:ml-7" href="/contact">
           Contact Us
         </Link>
       )}
@@ -59,9 +59,9 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = () => {
           <nav className="grid gap-3" aria-label="Mobile navigation" onClick={() => setIsOpen(false)}>
             {links}
             {isPropertyDetail ? (
-              <a className="mt-2 bg-[#073f4d] px-5 py-4 text-center text-base font-bold text-white" href="#inquiry">Schedule Viewing</a>
+              <a className="mt-2 rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-4 text-center text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)]" href="#inquiry">Schedule Viewing</a>
             ) : (
-              <Link className="mt-2 bg-[#073f4d] px-5 py-4 text-center text-base font-bold text-white" href="/contact">Contact Us</Link>
+              <Link className="mt-2 rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-4 text-center text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)]" href="/contact">Contact Us</Link>
             )}
           </nav>
         </div>

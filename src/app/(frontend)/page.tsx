@@ -1,19 +1,11 @@
 import type { Metadata } from 'next'
 
 import { HomeParallaxHero } from '@/components/HomeParallaxHero'
+import { siteImages } from '@/constants/siteImages'
 import { PropertyCard } from '@/components/PropertyCard'
 import { PropertyModeSelector } from '@/components/PropertyModeSelector'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
-
-const unsplash = {
-  beach: 'https://unsplash.com/photos/iduEaeBB_rQ/download?force=true&w=1600',
-  aerial: 'https://unsplash.com/photos/rhlV7hF-sVY/download?force=true&w=1600',
-  train: 'https://unsplash.com/photos/vWGvoiHTFPU/download?force=true&w=1600',
-  fishermen: 'https://unsplash.com/photos/Qx8_d5dGhrs/download?force=true&w=1600',
-  spices: 'https://unsplash.com/photos/JXUkZmmGxHg/download?force=true&w=1600',
-  lagoon: 'https://unsplash.com/photos/6BQyHtYSb5E/download?force=true&w=1600',
-}
 
 export const metadata: Metadata = {
   title: 'Coastline Realty | Sri Lankan Coastal Property',
@@ -53,15 +45,15 @@ export default async function Home() {
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="relative min-h-[520px] overflow-hidden bg-[#d9d4ca] sm:mt-20">
-            <img alt="Sri Lankan palm beach from Unsplash" className="h-full w-full object-cover" src={unsplash.beach} />
+            <img alt="Sri Lankan palm beach from Unsplash" className="h-full w-full object-cover" src={siteImages.beach} />
           </div>
           <div className="grid gap-5">
-            <div className="relative min-h-[250px] overflow-hidden bg-[#d9d4ca]"><img alt="Aerial Sri Lankan coastline from Unsplash" className="h-full w-full object-cover" src={unsplash.aerial} /></div>
+            <div className="relative min-h-[250px] overflow-hidden bg-[#d9d4ca]"><img alt="Aerial Sri Lankan coastline from Unsplash" className="h-full w-full object-cover" src={siteImages.aerial} /></div>
             <div className="border border-[#123f4b]/10 bg-white/55 p-8 shadow-[0_18px_60px_rgba(18,63,75,0.06)]">
               <p className="font-serif text-4xl leading-tight text-[#073f4d]">Verified listings. Private viewings. Local expertise.</p>
               <p className="mt-5 text-base leading-8 text-[#26383d]/80">Each property is presented with practical details, clear location context, and direct ways to speak with our team.</p>
             </div>
-            <div className="relative min-h-[250px] overflow-hidden bg-[#d9d4ca]"><img alt="Train crossing a forest bridge in Sri Lanka from Unsplash" className="h-full w-full object-cover" src={unsplash.train} /></div>
+            <div className="relative min-h-[250px] overflow-hidden bg-[#d9d4ca]"><img alt="Train crossing a forest bridge in Sri Lanka from Unsplash" className="h-full w-full object-cover" src={siteImages.train} /></div>
           </div>
         </div>
       </section>
@@ -74,7 +66,7 @@ export default async function Home() {
             <p className="mt-6 max-w-2xl text-xl leading-9 text-[#26383d]/80">Browse by buy, rent, or lease, then contact us directly for availability, viewings, and local advice.</p>
           </div>
           <div className="relative min-h-[420px] overflow-hidden bg-[#d9d4ca]">
-            <img alt="Stilt fishermen on the Sri Lankan coast from Unsplash" className="h-full w-full object-cover" src={unsplash.fishermen} />
+            <img alt="Stilt fishermen on the Sri Lankan coast from Unsplash" className="absolute inset-0 h-full w-full object-cover" src={siteImages.fishermen} />
           </div>
         </div>
       </section>
@@ -86,7 +78,7 @@ export default async function Home() {
               <p className="text-base font-semibold text-white/82">Featured properties</p>
               <h2 className="mt-4 font-serif text-5xl tracking-[-0.055em] md:text-6xl">Current coastal listings</h2>
             </div>
-            <a className="bg-white px-6 py-4 text-base font-bold text-[#073f4d] hover:bg-[#f0e8d8]" href="/properties">View All Properties</a>
+            <a className="inline-flex items-center justify-center rounded-sm bg-white px-7 py-4 text-sm font-bold uppercase tracking-[0.16em] text-[#073f4d] shadow-[0_16px_36px_rgba(0,0,0,0.18)] ring-1 ring-white/40 transition duration-300 hover:-translate-y-0.5 hover:bg-[#f0e8d8] hover:shadow-[0_20px_48px_rgba(0,0,0,0.24)]" href="/properties">View All Properties</a>
           </div>
 
           {properties.docs.length > 0 ? (
@@ -107,8 +99,10 @@ export default async function Home() {
             <p className="text-base font-semibold text-[#123f4b]/80">Begin the search</p>
             <h2 className="mt-5 max-w-2xl font-serif text-5xl leading-[0.98] tracking-[-0.055em] text-[#073f4d]">Tell us the shoreline, town, or feeling you are looking for.</h2>
           </div>
-          <div className="flex items-end bg-[#d9d4ca] p-8 text-[#073f4d] md:p-12">
-            <a className="border border-[#073f4d]/30 bg-[#073f4d] px-7 py-4 text-base font-bold text-white transition hover:bg-[#0b5264]" href="/contact">Contact Us</a>
+          <div className="relative flex min-h-[320px] items-end overflow-hidden bg-[#d9d4ca] p-8 text-[#073f4d] md:p-12">
+            <img alt="Brown wooden table and chairs" className="absolute inset-0 h-full w-full object-cover" src={siteImages.dining} />
+            <div className="absolute inset-0 bg-[#073f4d]/20" />
+            <a className="relative inline-flex items-center justify-center rounded-sm border border-white/30 bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-white shadow-[0_16px_36px_rgba(0,0,0,0.28)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_48px_rgba(0,0,0,0.34)]" href="/contact">Contact Us</a>
           </div>
         </div>
       </section>
