@@ -24,14 +24,14 @@ export function PropertyCard({ property }: { property: Property }) {
           <div className="mb-3 flex items-center justify-between gap-4 text-sm font-semibold text-[#123f4b]/80">
             <span>⌖ {property.city}</span><span>{property.propertyType}</span>
           </div>
-          <h3 className="font-serif text-3xl leading-tight tracking-[-0.025em] text-[#073f4d]">{property.title}</h3>
+          <h3 className="text-2xl font-bold leading-tight tracking-[-0.025em] text-[#073f4d]">{property.title}</h3>
           <div className="mt-5 grid grid-cols-3 gap-3 border-y border-[#123f4b]/10 py-4 text-sm text-[#26383d]/85">
             {property.bedrooms ? <span>{property.bedrooms} Beds</span> : <span>— Beds</span>}
             {property.bathrooms ? <span>{property.bathrooms} Baths</span> : <span>— Baths</span>}
             {property.extentPerches ? <span>{property.extentPerches} Perches</span> : <span>— Land</span>}
           </div>
           <div className="mt-auto pt-5">
-            <PropertyPrice className="font-serif text-2xl text-[#123f4b]" value={property.listedPriceTotal} />
+            <PropertyPrice className="text-2xl font-extrabold text-[#123f4b]" value={property.listedPriceTotal} />
             <span className="mt-5 inline-flex min-h-11 items-center justify-center rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)] ring-1 ring-white/20 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-[0_16px_34px_rgba(7,63,77,0.3)]">View Details</span>
           </div>
         </div>

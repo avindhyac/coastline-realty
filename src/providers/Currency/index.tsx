@@ -33,10 +33,10 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
       if (!lkrValue) return 'Price on request'
 
       if (currency === 'LKR') {
-        return `LKR ${Number(lkrValue).toLocaleString('en-US', { maximumFractionDigits: 0 })}`
+        return `Rs. ${Number(lkrValue).toLocaleString('en-US', { maximumFractionDigits: 0 })}`
       }
 
-      return `USD ${(Number(lkrValue) / LKR_PER_USD).toLocaleString('en-US', { maximumFractionDigits: 0 })}`
+      return `$${(Number(lkrValue) / LKR_PER_USD).toLocaleString('en-US', { maximumFractionDigits: 0 })}`
     },
     [currency],
   )

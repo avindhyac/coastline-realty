@@ -92,7 +92,7 @@ export default async function Home() {
           <div className="relative flex min-h-[320px] items-end overflow-hidden bg-[#d9d4ca] p-8 text-[#073f4d] md:p-12">
             <img alt="Brown wooden table and chairs" className="absolute inset-0 h-full w-full object-cover" src={siteImages.dining} />
             <div className="absolute inset-0 bg-[#073f4d]/20" />
-            <a className="relative inline-flex items-center justify-center rounded-sm border border-white/30 bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-white shadow-[0_16px_36px_rgba(0,0,0,0.28)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_48px_rgba(0,0,0,0.34)]" href="/contact">Contact Us</a>
+            <a className="relative inline-flex items-center justify-center rounded-sm border border-white/30 bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-white shadow-[0_16px_36px_rgba(0,0,0,0.28)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_48px_rgba(0,0,0,0.34)]" href="/properties">Browse Listings</a>
           </div>
         </div>
       </section>

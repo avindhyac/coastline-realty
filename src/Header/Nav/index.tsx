@@ -42,8 +42,8 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = () => {
           Schedule Viewing
         </a>
       ) : (
-        <Link className="hidden min-h-12 items-center self-center rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-3 text-sm font-bold uppercase leading-none tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(7,63,77,0.3)] md:ml-4 md:inline-flex lg:ml-7" href="/contact">
-          Contact Us
+        <Link className="hidden min-h-12 items-center self-center rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-3 text-sm font-bold uppercase leading-none tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(7,63,77,0.3)] md:ml-4 md:inline-flex lg:ml-7" href="/properties">
+          View Properties
         </Link>
       )}
 
@@ -65,7 +65,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = () => {
             {isPropertyDetail ? (
               <a className="mt-2 rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-4 text-center text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)]" href="#inquiry">Schedule Viewing</a>
             ) : (
-              <Link className="mt-2 rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-4 text-center text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)]" href="/contact">Contact Us</Link>
+              <Link className="mt-2 rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-4 text-center text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)]" href="/properties">View Properties</Link>
             )}
           </nav>
         </div>
