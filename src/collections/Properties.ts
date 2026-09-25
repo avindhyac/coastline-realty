@@ -75,6 +75,8 @@ export const Properties: CollectionConfig = {
     bedrooms: true,
     bathrooms: true,
     featuredImage: true,
+    featured: true,
+    featuredSortOrder: true,
   },
   fields: [
     {
@@ -100,7 +102,25 @@ export const Properties: CollectionConfig = {
               ],
             },
             { name: 'subType', type: 'text' },
-            { name: 'featured', type: 'checkbox', defaultValue: false },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'featured',
+                  label: 'Pin to top of category',
+                  type: 'checkbox',
+                  defaultValue: false,
+                  admin: { description: 'Featured properties appear before regular listings within their Buy/Rent/Lease category.', width: '50%' },
+                },
+                {
+                  name: 'featuredSortOrder',
+                  label: 'Pinned order',
+                  type: 'number',
+                  defaultValue: 0,
+                  admin: { description: 'Lower numbers appear first among pinned properties.', width: '50%' },
+                },
+              ],
+            },
             { name: 'description', type: 'textarea' },
           ],
         },

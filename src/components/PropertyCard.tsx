@@ -1,9 +1,8 @@
 import type { Property } from '@/payload-types'
 
 import { Media } from '@/components/Media'
+import { PropertyPrice } from '@/components/PropertyPrice'
 import { getPropertyDummyImages, isSeededPlaceholderMedia } from '@/utilities/propertyDummyImages'
-
-const formatPrice = (value?: number | null) => value ? `LKR ${Number(value).toLocaleString()}` : 'Price on request'
 
 export function PropertyCard({ property }: { property: Property }) {
   const dummyImage = isSeededPlaceholderMedia(property.featuredImage) ? getPropertyDummyImages(property.slug || property.id)[0] : null
@@ -32,7 +31,7 @@ export function PropertyCard({ property }: { property: Property }) {
             {property.extentPerches ? <span>{property.extentPerches} Perches</span> : <span>— Land</span>}
           </div>
           <div className="mt-auto pt-5">
-            <p className="font-serif text-2xl text-[#123f4b]">{formatPrice(property.listedPriceTotal)}</p>
+            <PropertyPrice className="font-serif text-2xl text-[#123f4b]" value={property.listedPriceTotal} />
             <span className="mt-5 inline-flex min-h-11 items-center justify-center rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)] ring-1 ring-white/20 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-[0_16px_34px_rgba(7,63,77,0.3)]">View Details</span>
           </div>
         </div>

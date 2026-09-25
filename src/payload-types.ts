@@ -788,7 +788,14 @@ export interface Property {
     'Bare Land' | 'House' | 'Villa' | 'Apartment' | 'Commercial' | 'Agricultural' | 'Warehouse' | 'Mixed-Use';
   listingStatus: 'Active' | 'Under Offer' | 'Sold' | 'Withdrawn' | 'Expired';
   subType?: string | null;
+  /**
+   * Featured properties appear before regular listings within their Buy/Rent/Lease category.
+   */
   featured?: boolean | null;
+  /**
+   * Lower numbers appear first among pinned properties.
+   */
+  featuredSortOrder?: number | null;
   description?: string | null;
   address: string;
   city: string;
@@ -1293,6 +1300,7 @@ export interface PropertiesSelect<T extends boolean = true> {
   listingStatus?: T;
   subType?: T;
   featured?: T;
+  featuredSortOrder?: T;
   description?: T;
   address?: T;
   city?: T;

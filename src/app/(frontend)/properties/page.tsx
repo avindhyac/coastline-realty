@@ -103,7 +103,7 @@ export default async function PropertiesPage({ searchParams }: Args) {
     limit: 60,
     overrideAccess: false,
     pagination: false,
-    sort: '-featured,-createdAt',
+    sort: '-featured,featuredSortOrder,-createdAt',
     where: {
       and: filters,
     },

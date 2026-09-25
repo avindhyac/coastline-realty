@@ -4,6 +4,7 @@ import { HomeParallaxHero } from '@/components/HomeParallaxHero'
 import { siteImages } from '@/constants/siteImages'
 import { PropertyCard } from '@/components/PropertyCard'
 import { PropertyModeSelector } from '@/components/PropertyModeSelector'
+import { UrbanPropertiesShowcase } from '@/components/UrbanPropertiesShowcase'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 
@@ -58,18 +59,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="border-y border-[#123f4b]/10 bg-[#fbfaf7] py-20 lg:py-28">
-        <div className="container grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:items-end">
-          <div>
-            <p className="text-base font-semibold text-[#123f4b]/80">A simpler way to search</p>
-            <h2 className="mt-5 max-w-4xl font-serif text-5xl leading-[1] tracking-[-0.045em] text-[#073f4d] md:text-7xl">Find the right property with confidence.</h2>
-            <p className="mt-6 max-w-2xl text-xl leading-9 text-[#26383d]/80">Browse by buy, rent, or lease, then contact us directly for availability, viewings, and local advice.</p>
-          </div>
-          <div className="relative min-h-[420px] overflow-hidden bg-[#d9d4ca]">
-            <img alt="Stilt fishermen on the Sri Lankan coast from Unsplash" className="absolute inset-0 h-full w-full object-cover" src={siteImages.fishermen} />
-          </div>
-        </div>
-      </section>
+      <UrbanPropertiesShowcase />
 
       <section id="featured-properties" className="bg-[#073f4d] py-20 text-white lg:py-28">
         <div className="container">
