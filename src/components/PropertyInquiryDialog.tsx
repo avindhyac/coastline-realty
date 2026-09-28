@@ -22,7 +22,7 @@ export function PropertyInquiryDialog({ form, propertyTitle, shareUrl }: Props) 
         <h2 className="mt-3 text-3xl font-bold text-[#123f4b]">Enquire about this property</h2>
         <p className="mt-3 text-base leading-7 text-[#26383d]/80">Request viewing times, title details, pricing guidance, and next steps from the Coastline Realty team.</p>
         <div className="mt-6 grid gap-3">
-          <button className="min-h-12 rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-6 py-4 text-center text-xs font-bold uppercase tracking-[0.18em] text-white shadow-[0_14px_30px_rgba(7,63,77,0.24)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(7,63,77,0.34)]" onClick={() => setIsOpen(true)} type="button">Enquire Now</button>
+          <button className="c-button c-button--gooey min-h-12 w-full" onClick={() => setIsOpen(true)} type="button"><span className="c-button__label">Enquire Now</span><span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span></button>
           <a className="min-h-12 rounded-sm border border-[#123f4b]/20 bg-white px-6 py-4 text-center text-xs font-bold uppercase tracking-[0.18em] text-[#073f4d] transition hover:bg-[#f8f6f0]" href={shareHref}>Share Property</a>
         </div>
       </aside>
@@ -30,7 +30,7 @@ export function PropertyInquiryDialog({ form, propertyTitle, shareUrl }: Props) 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#123f4b]/10 bg-[#fbfaf7]/96 p-3 shadow-[0_-14px_40px_rgba(18,63,75,0.16)] backdrop-blur md:hidden">
         <div className="container flex gap-3 px-0">
           <a className="flex min-h-12 flex-1 items-center justify-center rounded-sm border border-[#123f4b]/20 bg-white px-4 text-center text-xs font-bold uppercase tracking-[0.14em] text-[#073f4d]" href={shareHref}>Share</a>
-          <button className="flex min-h-12 flex-[1.7] items-center justify-center rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-4 text-center text-xs font-bold uppercase tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)]" onClick={() => setIsOpen(true)} type="button">Enquire Now</button>
+          <button className="c-button c-button--gooey min-h-12 flex-[1.7]" onClick={() => setIsOpen(true)} type="button"><span className="c-button__label">Enquire Now</span><span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span></button>
         </div>
       </div>
 

@@ -10,8 +10,10 @@ import { usePathname, useSearchParams } from 'next/navigation'
 
 const navLinkClass = (active: boolean) =>
   [
-    'inline-flex min-h-12 items-center px-1 py-2 text-base font-semibold leading-none transition hover:text-[#0b5264]',
-    active ? 'border-b-2 border-[#073f4d] text-[#073f4d]' : 'text-[#073f4d]/82',
+    'group relative inline-flex min-h-12 items-center px-1 py-2 text-base font-semibold leading-none transition duration-300 after:absolute after:inset-x-0 after:bottom-1 after:h-px after:origin-left after:bg-[#073f4d] after:transition-transform after:duration-300 hover:text-[#073f4d] hover:after:scale-x-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#073f4d]',
+    active
+      ? 'text-[#073f4d] after:scale-x-100'
+      : 'text-[#073f4d]/70 after:scale-x-0 hover:text-[#073f4d]',
   ].join(' ')
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = () => {
@@ -38,23 +40,29 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = () => {
       <CurrencySwitcher className="hidden md:inline-flex" />
 
       {isPropertyDetail ? (
-        <a className="hidden min-h-12 items-center self-center rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-3 text-sm font-bold uppercase leading-none tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(7,63,77,0.3)] md:ml-4 md:inline-flex lg:ml-7" href="#inquiry">
-          Schedule Viewing
+        <a className="c-button c-button--gooey hidden min-h-12 self-center md:ml-4 md:inline-flex lg:ml-7" href="#inquiry">
+          <span className="c-button__label">Schedule Viewing</span>
+          <span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span>
         </a>
       ) : (
-        <Link className="hidden min-h-12 items-center self-center rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-3 text-sm font-bold uppercase leading-none tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(7,63,77,0.3)] md:ml-4 md:inline-flex lg:ml-7" href="/properties">
-          View Properties
+        <Link className="c-button c-button--gooey hidden min-h-12 self-center md:ml-4 md:inline-flex lg:ml-7" href="/properties">
+          <span className="c-button__label">View Properties</span>
+          <span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span>
         </Link>
       )}
 
       <button
         aria-expanded={isOpen}
-        aria-label="Toggle navigation menu"
-        className="min-h-12 border border-[#123f4b]/20 px-4 text-base font-bold text-[#073f4d] lg:hidden"
+        aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        className="flex h-12 w-12 items-center justify-center rounded-full border border-[#123f4b]/20 text-[#073f4d] transition hover:border-[#073f4d]/45 hover:bg-[#073f4d]/5 lg:hidden"
         onClick={() => setIsOpen((value) => !value)}
         type="button"
       >
-        Menu
+        <span className="relative block h-4 w-5" aria-hidden="true">
+          <span className={["absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition duration-200", isOpen ? 'translate-y-[7px] rotate-45' : ''].join(' ')} />
+          <span className={["absolute left-0 top-[7px] h-0.5 w-5 rounded-full bg-current transition duration-200", isOpen ? 'opacity-0' : ''].join(' ')} />
+          <span className={["absolute left-0 top-[14px] h-0.5 w-5 rounded-full bg-current transition duration-200", isOpen ? '-translate-y-[7px] -rotate-45' : ''].join(' ')} />
+        </span>
       </button>
 
       {isOpen ? (
@@ -63,9 +71,9 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = () => {
             {links}
             <CurrencySwitcher className="mt-1 justify-self-start" />
             {isPropertyDetail ? (
-              <a className="mt-2 rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-4 text-center text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)]" href="#inquiry">Schedule Viewing</a>
+              <a className="c-button c-button--gooey mt-2 w-full" href="#inquiry"><span className="c-button__label">Schedule Viewing</span><span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span></a>
             ) : (
-              <Link className="mt-2 rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-4 text-center text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)]" href="/properties">View Properties</Link>
+              <Link className="c-button c-button--gooey mt-2 w-full" href="/properties"><span className="c-button__label">View Properties</span><span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span></Link>
             )}
           </nav>
         </div>

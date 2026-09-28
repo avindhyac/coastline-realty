@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import type { Property, Media as MediaType } from '@/payload-types'
 
-import { Media } from '@/components/Media'
 import { PropertyCard } from '@/components/PropertyCard'
 import { PropertyGallery, type GalleryImage } from '@/components/PropertyGallery'
 import { PropertyPrice } from '@/components/PropertyPrice'
@@ -51,11 +50,12 @@ const StatIcon = ({ type }: { type: 'bed' | 'bath' | 'land' }) => {
 }
 
 const StatDetail = ({ icon, label, value }: { icon: 'bed' | 'bath' | 'land'; label: string; value?: string | number | null }) => (
-  <div className="flex items-center gap-3 border-r border-[#123f4b]/10 p-4 last:border-r-0">
-    <dt className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#073f4d]/8 text-[#073f4d]" aria-label={label} title={label}>
+  <div className="flex flex-col items-center justify-center gap-2 border-r border-[#123f4b]/10 p-4 text-center last:border-r-0 md:p-5">
+    <dt className="flex items-center gap-2 text-[#073f4d]" aria-label={label} title={label}>
       <StatIcon type={icon} />
+      <span className="text-xl font-extrabold leading-none">{value || value === 0 ? value : '—'}</span>
     </dt>
-    <dd className="min-w-0 text-xl font-bold leading-tight text-[#073f4d]">{value || value === 0 ? value : '—'}</dd>
+    <dd className="text-xs font-bold uppercase tracking-[0.12em] text-[#26383d]/55">{label}</dd>
   </div>
 )
 
@@ -80,7 +80,7 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
   const similarProperties = await querySimilarProperties(property)
 
   return (
-    <main className="bg-[#f8f6f0] pb-24 text-[#26383d] md:pb-0">
+    <main className="bg-[#f4f1e9] pb-24 text-[#26383d] md:pb-0">
       <section className="hidden border-b border-[#123f4b]/10 bg-[#fbfaf7] md:block">
         <div className="container py-5 text-xs text-[#26383d]/70">
           <Link href="/" className="hover:text-[#073f4d]">Home</Link> <span className="mx-2">›</span>
@@ -89,29 +89,31 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
         </div>
       </section>
 
-      <PropertyGallery images={galleryImages} title={property.title} />
+      <section className="container py-5 md:py-10">
+        <article>
+          <PropertyGallery images={galleryImages} title={property.title} />
 
-      <section className="container border-b border-[#123f4b]/10 pb-8 md:pb-10">
-        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-start">
-          <div>
-            <PropertyPrice className="block text-5xl font-extrabold tracking-[-0.045em] text-[#073f4d] md:text-6xl" value={property.listedPriceTotal} />
-            <dl className="mt-5 grid grid-cols-3 overflow-hidden border-y border-[#123f4b]/10">
-              <StatDetail icon="bed" label="Bedrooms" value={property.bedrooms} />
-              <StatDetail icon="bath" label="Bathrooms" value={property.bathrooms} />
-              <StatDetail icon="land" label="Land extent" value={property.extentPerches ? `${property.extentPerches} Pchs` : null} />
-            </dl>
-            <h1 className="mt-4 text-3xl font-bold leading-tight tracking-[-0.035em] text-[#073f4d] md:text-5xl">{property.title}</h1>
-            <p className="mt-3 text-base font-semibold text-[#123f4b]/75">⌖ {location || property.address}</p>
+          <div className="py-7 md:py-9">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+              <div>
+                <h1 className="font-serif text-4xl leading-[1.05] tracking-[-0.04em] text-[#123f4b] md:text-6xl">{property.title}</h1>
+                <p className="mt-3 text-lg font-semibold text-[#26383d]/65">{location || property.address}</p>
+                <PropertyPrice className="mt-5 block text-3xl font-extrabold tracking-[-0.035em] text-[#17282d] md:text-4xl" value={property.listedPriceTotal} />
+              </div>
+
+              <dl className="grid grid-cols-3 overflow-hidden rounded-2xl border border-[#123f4b]/10 bg-[#fbfaf7] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] sm:grid-cols-3 lg:mt-2">
+                <StatDetail icon="bed" label="Beds" value={property.bedrooms} />
+                <StatDetail icon="bath" label="Baths" value={property.bathrooms} />
+                <StatDetail icon="land" label="Perches" value={property.extentPerches ? `${property.extentPerches}` : null} />
+              </dl>
+            </div>
+
+            <div className="mt-8 border-t border-[#123f4b]/10 pt-7">
+              <h2 className="text-2xl font-bold text-[#123f4b]">Overview</h2>
+              <p className="mt-4 max-w-4xl text-lg leading-8 text-[#26383d]/84">{property.description || 'More details for this listing will be added by the Coastline Realty team.'}</p>
+            </div>
           </div>
-
-        </div>
-      </section>
-
-      <section className="container py-10">
-        <div className="max-w-3xl">
-          <h2 className="text-2xl font-bold text-[#123f4b]">Overview</h2>
-          <p className="mt-4 text-lg leading-8 text-[#26383d]/84">{property.description || 'More details for this listing will be added by the Coastline Realty team.'}</p>
-        </div>
+        </article>
       </section>
 
       <section className="container pb-10">

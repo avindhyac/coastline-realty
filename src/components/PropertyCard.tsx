@@ -32,7 +32,10 @@ export function PropertyCard({ property }: { property: Property }) {
           </div>
           <div className="mt-auto pt-5">
             <PropertyPrice className="text-2xl font-extrabold text-[#123f4b]" value={property.listedPriceTotal} />
-            <span className="mt-5 inline-flex min-h-11 items-center justify-center rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-5 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white shadow-[0_12px_26px_rgba(7,63,77,0.22)] ring-1 ring-white/20 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-[0_16px_34px_rgba(7,63,77,0.3)]">View Details</span>
+            <span className="c-button c-button--gooey mt-5 min-h-11">
+              <span className="c-button__label">View Details</span>
+              <span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span>
+            </span>
           </div>
         </div>
       </a>

@@ -156,8 +156,9 @@ export const FormBlock: React.FC<
                   })}
               </div>
 
-              <Button className="h-auto rounded-sm bg-gradient-to-r from-[#073f4d] to-[#0b5264] px-8 py-4 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-[0_14px_30px_rgba(7,63,77,0.24)] ring-1 ring-white/20 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(7,63,77,0.34)]" form={formID} type="submit" variant="default">
-                {submitButtonLabel}
+              <Button className="c-button c-button--gooey h-auto" form={formID} type="submit" variant="default">
+                <span className="c-button__label">{submitButtonLabel}</span>
+                <span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span>
               </Button>
             </form>
           )}

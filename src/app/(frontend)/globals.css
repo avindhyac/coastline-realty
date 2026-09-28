@@ -53,6 +53,130 @@ h1, h2 {
 }
 
 @layer utilities {
+  .c-button {
+    --gooey-color: #073f4d;
+    color: var(--gooey-color);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    padding: 1em 1.45em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    vertical-align: middle;
+    z-index: 1;
+  }
+
+  .c-button--gooey {
+    border: 2px solid currentColor;
+    border-radius: 0;
+    overflow: hidden;
+    transition: color 700ms ease, border-color 700ms ease, background-color 700ms ease;
+  }
+
+  .c-button--gooey .c-button__label {
+    position: relative;
+    z-index: 2;
+  }
+
+  .c-button--gooey .c-button__blobs {
+    inset: 0 -1px -3px 0;
+    filter: url(#goo);
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .c-button--gooey .c-button__blobs span {
+    background-color: var(--gooey-color);
+    border-radius: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transform: scale(1.4) translateY(125%) translateZ(0);
+    transition: transform 700ms ease;
+    width: 34%;
+  }
+
+  .c-button--gooey .c-button__blobs span:nth-child(1) { left: -5%; }
+  .c-button--gooey .c-button__blobs span:nth-child(2) { left: 30%; transition-delay: 60ms; }
+  .c-button--gooey .c-button__blobs span:nth-child(3) { left: 66%; transition-delay: 25ms; }
+
+  .c-button--gooey:hover,
+  .c-button--gooey:focus-visible {
+    color: #fff;
+  }
+
+  .c-button--gooey:hover .c-button__blobs span,
+  .c-button--gooey:focus-visible .c-button__blobs span {
+    transform: scale(1.4) translateY(0) translateZ(0);
+  }
+
+  .c-button--light {
+    --gooey-color: #fff;
+    color: #fff;
+  }
+
+  .c-button--light:hover,
+  .c-button--light:focus-visible {
+    color: #073f4d;
+  }
+
+  .gooey-card {
+    --gooey-color: #073f4d;
+    color: #073f4d;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 700ms ease, color 700ms ease, transform 300ms ease, background-color 300ms ease;
+    z-index: 1;
+  }
+
+  .gooey-card__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .gooey-card__blobs {
+    inset: 0 -1px -3px 0;
+    filter: url(#goo);
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .gooey-card__blobs span {
+    background-color: var(--gooey-color);
+    border-radius: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transform: scale(1.35) translateY(125%) translateZ(0);
+    transition: transform 700ms ease;
+    width: 34%;
+  }
+
+  .gooey-card__blobs span:nth-child(1) { left: -5%; }
+  .gooey-card__blobs span:nth-child(2) { left: 30%; transition-delay: 60ms; }
+  .gooey-card__blobs span:nth-child(3) { left: 66%; transition-delay: 25ms; }
+
+  .gooey-card:hover,
+  .gooey-card:focus-visible {
+    border-color: #073f4d;
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .gooey-card:hover .gooey-card__blobs span,
+  .gooey-card:focus-visible .gooey-card__blobs span {
+    transform: scale(1.35) translateY(0) translateZ(0);
+  }
+
   .container {
     width: 100%;
     margin-inline: auto;

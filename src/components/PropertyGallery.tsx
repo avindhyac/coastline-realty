@@ -57,16 +57,19 @@ export function PropertyGallery({ images, title }: Props) {
   const onTouchEnd = (clientX: number) => {
     if (touchStart === null) return
     const delta = touchStart - clientX
-    if (Math.abs(delta) > 48) delta > 0 ? next() : previous()
+    if (Math.abs(delta) > 48) {
+      if (delta > 0) next()
+      else previous()
+    }
     setTouchStart(null)
   }
 
   return (
     <>
-      <section id="gallery" className="container py-4 md:py-6">
-        <div className="grid gap-3 overflow-hidden md:grid-cols-[minmax(0,1fr)_18rem] lg:grid-cols-[minmax(0,1fr)_20rem]" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
+      <section id="gallery" className="w-full">
+        <div className="overflow-hidden" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
           <div
-            className="group relative aspect-[4/3] overflow-hidden bg-[#d9d4ca] md:aspect-[16/9]"
+            className="group relative aspect-[4/3] overflow-hidden bg-[#d9d4ca] md:aspect-[16/9] lg:aspect-[21/9]"
             onTouchStart={(event) => setTouchStart(event.changedTouches[0]?.clientX ?? null)}
             onTouchEnd={(event) => onTouchEnd(event.changedTouches[0]?.clientX ?? 0)}
           >
@@ -84,20 +87,10 @@ export function PropertyGallery({ images, title }: Props) {
             ) : null}
 
             <button className="absolute inset-0 z-10 cursor-zoom-in" onClick={() => setLightboxOpen(true)} type="button" aria-label="Open photo gallery" />
-            <div className="pointer-events-none absolute inset-x-4 bottom-4 z-20 flex items-center justify-start gap-3 md:inset-x-5 md:bottom-5">
-              <span className="rounded-full border border-white/25 bg-black/40 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-white backdrop-blur md:rounded-none md:px-5 md:py-3">{active + 1} / {count}</span>
+            <div className="pointer-events-none absolute inset-x-4 bottom-4 z-20 flex items-center justify-between gap-3 md:inset-x-6 md:bottom-6">
+              <span className="rounded-full bg-black/45 px-4 py-2 text-xs font-bold tracking-[0.12em] text-white shadow-lg backdrop-blur">{active + 1} / {count}</span>
+              {count > 1 ? <span className="hidden rounded-full bg-white/20 px-4 py-2 text-xs font-semibold text-white backdrop-blur md:inline">Click to view gallery</span> : null}
             </div>
-          </div>
-
-          <div className="hidden h-full grid-rows-2 gap-3 md:grid md:max-w-[18rem] lg:max-w-[20rem]">
-            {gallery.slice(1, 3).map((image, index) => {
-              const imageIndex = index + 1
-              return (
-                <button className={["relative min-h-0 w-full overflow-hidden bg-[#d9d4ca] transition duration-500 hover:scale-[1.01] hover:brightness-105", active === imageIndex ? 'ring-4 ring-[#073f4d]' : ''].join(' ')} key={`${image.alt}-thumb-${index}`} onClick={() => interactTo(imageIndex)} type="button">
-                  <GalleryVisual image={image} />
-                </button>
-              )
-            })}
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 
 const urbanMarkets = [
   {
@@ -31,18 +32,18 @@ export function UrbanPropertiesShowcase() {
   const active = urbanMarkets[activeIndex]
 
   return (
-    <section className="border-y border-[#123f4b]/10 bg-[#fbfaf7] py-20 lg:py-28">
-      <div className="container grid gap-10 lg:grid-cols-[0.82fr_1fr] lg:items-center">
+    <section className="border-y border-[#123f4b]/10 bg-[#fbfaf7] py-14 md:py-20 lg:py-28">
+      <div className="container grid gap-9 lg:grid-cols-[0.82fr_1fr] lg:items-center">
         <div>
           <p className="text-base font-semibold text-[#123f4b]/80">Urban portfolio</p>
-          <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-[1] tracking-[-0.045em] text-[#073f4d] md:text-7xl">City properties with a sharper investment lens.</h2>
-          <p className="mt-6 max-w-xl text-xl leading-9 text-[#26383d]/80">Beyond the coast, we help clients evaluate apartments, commercial spaces, and urban land in Sri Lanka’s most active city markets.</p>
+          <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.02] tracking-[-0.045em] text-[#073f4d] md:mt-5 md:text-7xl md:leading-[1]">City properties with a sharper investment lens.</h2>
+          <p className="mt-5 max-w-xl text-lg leading-8 text-[#26383d]/80 md:mt-6 md:text-xl md:leading-9">Beyond the coast, we help clients evaluate apartments, commercial spaces, and urban land in Sri Lanka’s most active city markets.</p>
 
-          <div className="mt-8 grid gap-3">
+          <div className="mt-7 grid gap-3 md:mt-8">
             {urbanMarkets.map((market, index) => (
               <button
                 className={[
-                  'group flex items-center justify-between border p-5 text-left transition duration-300',
+                  'group flex items-center justify-between border p-4 text-left transition duration-300 md:p-5',
                   activeIndex === index
                     ? 'border-[#073f4d] bg-[#073f4d] text-white shadow-[0_18px_46px_rgba(7,63,77,0.18)]'
                     : 'border-[#123f4b]/10 bg-white/55 text-[#073f4d] hover:-translate-y-0.5 hover:border-[#123f4b]/25 hover:bg-white',
@@ -54,7 +55,7 @@ export function UrbanPropertiesShowcase() {
               >
                 <span>
                   <span className="block text-xs font-bold uppercase tracking-[0.18em] opacity-70">0{index + 1}</span>
-                  <span className="mt-1 block font-serif text-2xl">{market.name}</span>
+                  <span className="mt-1 block font-serif text-xl md:text-2xl">{market.name}</span>
                 </span>
                 <span className="text-2xl transition group-hover:translate-x-1">→</span>
               </button>
@@ -63,7 +64,7 @@ export function UrbanPropertiesShowcase() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-[0.55fr_1fr]">
-          <div className="grid gap-4 sm:pt-14">
+          <div className="hidden gap-4 sm:grid sm:pt-14">
             {urbanMarkets.map((market, index) => (
               <button
                 aria-label={`Show ${market.name}`}
@@ -82,14 +83,17 @@ export function UrbanPropertiesShowcase() {
             ))}
           </div>
 
-          <article className="relative min-h-[520px] overflow-hidden bg-[#d9d4ca] shadow-[0_22px_70px_rgba(18,63,75,0.12)]">
+          <article className="relative min-h-[430px] overflow-hidden bg-[#d9d4ca] shadow-[0_22px_70px_rgba(18,63,75,0.12)] sm:min-h-[520px]">
             <img alt={active.title} className="absolute inset-0 h-full w-full object-cover transition duration-700" src={active.image} />
             <div className="absolute inset-0 bg-gradient-to-t from-[#062f39]/88 via-[#062f39]/30 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-7 text-white md:p-9">
+            <div className="absolute inset-x-0 bottom-0 p-6 text-white md:p-9">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/72">{active.name}</p>
-              <h3 className="mt-3 max-w-lg font-serif text-4xl leading-none tracking-[-0.035em] md:text-5xl">{active.title}</h3>
+              <h3 className="mt-3 max-w-lg font-serif text-3xl leading-none tracking-[-0.035em] md:text-5xl">{active.title}</h3>
               <p className="mt-4 max-w-lg text-base leading-7 text-white/82">{active.copy}</p>
-              <a className="mt-6 inline-flex items-center justify-center rounded-sm bg-white px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#073f4d] shadow-[0_14px_32px_rgba(0,0,0,0.22)] transition hover:-translate-y-0.5 hover:bg-[#f0e8d8]" href={active.href}>Explore {active.name}</a>
+              <Link className="c-button c-button--gooey c-button--light mt-6" href={active.href}>
+                <span className="c-button__label">Explore {active.name}</span>
+                <span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span>
+              </Link>
             </div>
           </article>
         </div>
