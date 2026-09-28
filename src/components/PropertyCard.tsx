@@ -30,11 +30,10 @@ export function PropertyCard({ property }: { property: Property }) {
             {property.bathrooms ? <span>{property.bathrooms} Baths</span> : <span>— Baths</span>}
             {property.extentPerches ? <span>{property.extentPerches} Perches</span> : <span>— Land</span>}
           </div>
-          <div className="mt-auto pt-5">
-            <PropertyPrice className="text-2xl font-extrabold text-[#123f4b]" value={property.listedPriceTotal} />
-            <span className="c-button c-button--gooey mt-5 min-h-11">
-              <span className="c-button__label">View Details</span>
-              <span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span>
+          <div className="mt-auto flex items-end justify-between gap-4 pt-6">
+            <PropertyPrice className="min-w-0 text-2xl font-extrabold leading-none text-[#123f4b]" value={property.listedPriceTotal} />
+            <span className="shrink-0 text-sm font-extrabold uppercase tracking-[0.14em] text-[#073f4d] underline decoration-[#073f4d]/20 underline-offset-8 transition group-hover:decoration-[#073f4d]">
+              View <span aria-hidden="true" className="inline-block transition group-hover:translate-x-1">→</span>
             </span>
           </div>
         </div>

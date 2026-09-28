@@ -25,55 +25,121 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = () => {
 
   const links = (
     <>
-      <Link className={navLinkClass(pathname === '/properties' && mode === 'buy')} href="/properties?mode=buy">Buy</Link>
-      <Link className={navLinkClass(pathname === '/properties' && mode === 'rent')} href="/properties?mode=rent">Rent</Link>
-      <Link className={navLinkClass(pathname === '/properties' && mode === 'lease')} href="/properties?mode=lease">Lease</Link>
+      <Link
+        className={navLinkClass(pathname === '/properties' && mode === 'buy')}
+        href="/properties?mode=buy"
+      >
+        Buy
+      </Link>
+      <Link
+        className={navLinkClass(pathname === '/properties' && mode === 'rent')}
+        href="/properties?mode=rent"
+      >
+        Rent
+      </Link>
+      <Link
+        className={navLinkClass(pathname === '/properties' && mode === 'lease')}
+        href="/properties?mode=lease"
+      >
+        Lease
+      </Link>
+      <Link className={navLinkClass(pathname === '/about')} href="/about">
+        About us
+      </Link>
     </>
   )
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-2 md:gap-4">
       <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
         {links}
       </nav>
 
-      <CurrencySwitcher className="hidden md:inline-flex" />
+      <div className="hidden lg:block">
+        <CurrencySwitcher />
+      </div>
 
-      {isPropertyDetail ? (
-        <a className="c-button c-button--gooey hidden min-h-12 self-center md:ml-4 md:inline-flex lg:ml-7" href="#inquiry">
-          <span className="c-button__label">Schedule Viewing</span>
-          <span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span>
-        </a>
-      ) : (
-        <Link className="c-button c-button--gooey hidden min-h-12 self-center md:ml-4 md:inline-flex lg:ml-7" href="/properties">
-          <span className="c-button__label">View Properties</span>
-          <span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span>
-        </Link>
-      )}
+      <div className="hidden lg:ml-7 lg:block">
+        {isPropertyDetail ? (
+          <a className="c-button c-button--gooey min-h-12 self-center" href="#inquiry">
+            <span className="c-button__label">Schedule Viewing</span>
+            <span className="c-button__blobs" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+          </a>
+        ) : (
+          <Link
+            className="c-button c-button--gooey c-button--compact min-h-12 self-center"
+            href="/contact"
+          >
+            <span className="c-button__label">Contact Us</span>
+            <span className="c-button__blobs" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+          </Link>
+        )}
+      </div>
 
       <button
         aria-expanded={isOpen}
         aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
-        className="flex h-12 w-12 items-center justify-center rounded-full border border-[#123f4b]/20 text-[#073f4d] transition hover:border-[#073f4d]/45 hover:bg-[#073f4d]/5 lg:hidden"
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#123f4b]/20 text-[#073f4d] transition hover:border-[#073f4d]/45 hover:bg-[#073f4d]/5 md:h-12 md:w-12 lg:hidden"
         onClick={() => setIsOpen((value) => !value)}
         type="button"
       >
         <span className="relative block h-4 w-5" aria-hidden="true">
-          <span className={["absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition duration-200", isOpen ? 'translate-y-[7px] rotate-45' : ''].join(' ')} />
-          <span className={["absolute left-0 top-[7px] h-0.5 w-5 rounded-full bg-current transition duration-200", isOpen ? 'opacity-0' : ''].join(' ')} />
-          <span className={["absolute left-0 top-[14px] h-0.5 w-5 rounded-full bg-current transition duration-200", isOpen ? '-translate-y-[7px] -rotate-45' : ''].join(' ')} />
+          <span
+            className={[
+              'absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition duration-200',
+              isOpen ? 'translate-y-[7px] rotate-45' : '',
+            ].join(' ')}
+          />
+          <span
+            className={[
+              'absolute left-0 top-[7px] h-0.5 w-5 rounded-full bg-current transition duration-200',
+              isOpen ? 'opacity-0' : '',
+            ].join(' ')}
+          />
+          <span
+            className={[
+              'absolute left-0 top-[14px] h-0.5 w-5 rounded-full bg-current transition duration-200',
+              isOpen ? '-translate-y-[7px] -rotate-45' : '',
+            ].join(' ')}
+          />
         </span>
       </button>
 
       {isOpen ? (
         <div className="absolute inset-x-4 top-[calc(100%+0.5rem)] border border-[#123f4b]/12 bg-[#fbfaf7] p-5 shadow-[0_22px_70px_rgba(18,63,75,0.16)] lg:hidden">
-          <nav className="grid gap-3" aria-label="Mobile navigation" onClick={() => setIsOpen(false)}>
+          <nav
+            className="grid gap-3"
+            aria-label="Mobile navigation"
+            onClick={() => setIsOpen(false)}
+          >
             {links}
             <CurrencySwitcher className="mt-1 justify-self-start" />
             {isPropertyDetail ? (
-              <a className="c-button c-button--gooey mt-2 w-full" href="#inquiry"><span className="c-button__label">Schedule Viewing</span><span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span></a>
+              <a className="c-button c-button--gooey mt-2 w-full" href="#inquiry">
+                <span className="c-button__label">Schedule Viewing</span>
+                <span className="c-button__blobs" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </span>
+              </a>
             ) : (
-              <Link className="c-button c-button--gooey mt-2 w-full" href="/properties"><span className="c-button__label">View Properties</span><span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span></Link>
+              <Link className="c-button c-button--gooey mt-2 w-full" href="/contact">
+                <span className="c-button__label">Contact Us</span>
+                <span className="c-button__blobs" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </span>
+              </Link>
             )}
           </nav>
         </div>

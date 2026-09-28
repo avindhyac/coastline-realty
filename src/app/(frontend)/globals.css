@@ -118,6 +118,12 @@ h1, h2 {
     transform: scale(1.4) translateY(0) translateZ(0);
   }
 
+  .c-button--compact {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    padding: 0.9em 1.05em;
+  }
+
   .c-button--light {
     --gooey-color: #fff;
     color: #fff;

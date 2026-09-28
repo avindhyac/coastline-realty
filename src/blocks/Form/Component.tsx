@@ -156,7 +156,7 @@ export const FormBlock: React.FC<
                   })}
               </div>
 
-              <Button className="c-button c-button--gooey h-auto" form={formID} type="submit" variant="default">
+              <Button className="c-button c-button--gooey h-auto w-full md:w-auto" form={formID} type="submit" variant="default">
                 <span className="c-button__label">{submitButtonLabel}</span>
                 <span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span>
               </Button>

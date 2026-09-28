@@ -44,7 +44,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           />
 
           <Header />
-          <div className="pt-[5.25rem] md:pt-[6rem]">
+          <div className="pt-[4.75rem] md:pt-[6rem]">
             {children}
           </div>
           <Footer />
