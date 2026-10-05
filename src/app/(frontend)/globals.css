@@ -222,7 +222,7 @@ h1, h2 {
 }
 
 :root {
-  --background: oklch(98.659% 0.03392 101.653);
+  --background: #fbfaf7;
   --foreground: oklch(14.5% 0 0deg);
   --card: oklch(96.5% 0.005 265deg);
   --card-foreground: oklch(14.5% 0 0deg);
