@@ -8,13 +8,13 @@ export function PropertyCard({ property }: { property: Property }) {
   const dummyImage = isSeededPlaceholderMedia(property.featuredImage) ? getPropertyDummyImages(property.slug || property.id)[0] : null
 
   return (
-    <article className="group h-full overflow-hidden border border-[#123f4b]/10 bg-[#fbfaf7] shadow-[0_14px_45px_rgba(18,63,75,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_70px_rgba(18,63,75,0.12)]">
+    <article className="group h-full overflow-hidden border border-[#123f4b]/10 bg-[#fbfaf7] shadow-[0_14px_45px_rgba(18,63,75,0.06)] transition duration-300 md:hover:-translate-y-1 md:hover:shadow-[0_22px_70px_rgba(18,63,75,0.12)]">
       <a className="flex h-full flex-col" href={`/properties/${property.slug}`}>
         <div className="relative aspect-[4/3] overflow-hidden bg-[#d9d4ca]">
           {dummyImage ? (
-            <img alt={property.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" src={dummyImage} />
+            <img alt={property.title} className="h-full w-full object-cover transition duration-700 md:group-hover:scale-105" src={dummyImage} />
           ) : property.featuredImage && typeof property.featuredImage === 'object' ? (
-            <Media fill imgClassName="object-cover transition duration-700 group-hover:scale-105" resource={property.featuredImage} />
+            <Media fill imgClassName="object-cover transition duration-700 md:group-hover:scale-105" resource={property.featuredImage} />
           ) : (
             <div className="flex h-full items-center justify-center p-8 text-center text-[#073f4d]">Image coming soon</div>
           )}
@@ -32,8 +32,8 @@ export function PropertyCard({ property }: { property: Property }) {
           </div>
           <div className="mt-auto flex items-end justify-between gap-4 pt-6">
             <PropertyPrice className="min-w-0 text-2xl font-extrabold leading-none text-[#123f4b]" value={property.listedPriceTotal} />
-            <span className="shrink-0 text-sm font-extrabold uppercase tracking-[0.14em] text-[#073f4d] underline decoration-[#073f4d]/20 underline-offset-8 transition group-hover:decoration-[#073f4d]">
-              View <span aria-hidden="true" className="inline-block transition group-hover:translate-x-1">→</span>
+            <span className="shrink-0 text-sm font-extrabold uppercase tracking-[0.14em] text-[#073f4d] underline decoration-[#073f4d]/20 underline-offset-8 transition md:group-hover:decoration-[#073f4d]">
+              View <span aria-hidden="true" className="inline-block transition md:group-hover:translate-x-1">→</span>
             </span>
           </div>
         </div>

@@ -74,7 +74,7 @@ export function HomeParallaxHero({
           {primaryHref && primaryLabel ? (
             <div className="mt-7 flex flex-col gap-3 sm:flex-row md:mt-8">
               <Link
-                className="inline-flex items-center justify-center rounded-sm bg-white px-7 py-4 text-center text-sm font-extrabold uppercase tracking-[0.16em] text-[#073f4d] shadow-[0_16px_34px_rgba(0,0,0,0.24)] transition duration-300 hover:-translate-y-0.5 md:bg-gradient-to-r md:from-[#073f4d] md:to-[#0b5264] md:text-white md:shadow-[0_14px_30px_rgba(7,63,77,0.28)] md:ring-1 md:ring-white/20 md:hover:shadow-[0_18px_42px_rgba(7,63,77,0.36)]"
+                className="inline-flex items-center justify-center rounded-sm bg-white px-7 py-4 text-center text-sm font-extrabold uppercase tracking-[0.16em] text-[#073f4d] shadow-[0_16px_34px_rgba(0,0,0,0.24)] transition duration-300 md:hover:-translate-y-0.5 md:bg-gradient-to-r md:from-[#073f4d] md:to-[#0b5264] md:text-white md:shadow-[0_14px_30px_rgba(7,63,77,0.28)] md:ring-1 md:ring-white/20 md:hover:shadow-[0_18px_42px_rgba(7,63,77,0.36)]"
                 href={primaryHref}
               >
                 {primaryLabel}
@@ -85,7 +85,7 @@ export function HomeParallaxHero({
             <p className="mt-5 text-sm font-semibold text-white/86 md:text-[#26383d]/75">
               Need guidance?{' '}
               <Link
-                className="font-extrabold text-white underline decoration-white/35 underline-offset-4 transition hover:decoration-white md:text-[#073f4d] md:decoration-[#073f4d]/25 md:hover:decoration-[#073f4d]"
+                className="font-extrabold text-white underline decoration-white/35 underline-offset-4 transition md:hover:decoration-white md:text-[#073f4d] md:decoration-[#073f4d]/25 md:hover:decoration-[#073f4d]"
                 href={secondaryHref}
               >
                 {secondaryLabel} <span aria-hidden="true">→</span>

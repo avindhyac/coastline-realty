@@ -23,10 +23,10 @@ export function PropertySearchBar({ activeMode, query }: Props) {
             type="search"
           />
         </div>
-        <button className="m-1.5 hidden rounded-full bg-[#073f4d] px-7 text-sm font-bold uppercase tracking-[0.14em] text-white transition hover:bg-[#0b5264] md:block" type="submit">
+        <button className="m-1.5 hidden rounded-full bg-[#073f4d] px-7 text-sm font-bold uppercase tracking-[0.14em] text-white transition md:hover:bg-[#0b5264] md:block" type="submit">
           Search
         </button>
-        <button aria-label="Search" className="m-1.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#073f4d] text-lg text-white transition hover:bg-[#0b5264] md:hidden" type="submit">
+        <button aria-label="Search" className="m-1.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#073f4d] text-lg text-white transition md:hover:bg-[#0b5264] md:hidden" type="submit">
           →
         </button>
       </div>

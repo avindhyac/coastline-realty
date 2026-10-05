@@ -83,8 +83,8 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
     <main className="bg-[#f4f1e9] pb-24 text-[#26383d] md:pb-0">
       <section className="hidden border-b border-[#123f4b]/10 bg-[#fbfaf7] md:block">
         <div className="container py-5 text-xs text-[#26383d]/70">
-          <Link href="/" className="hover:text-[#073f4d]">Home</Link> <span className="mx-2">›</span>
-          <Link href="/properties" className="hover:text-[#073f4d]">Properties</Link> <span className="mx-2">›</span>
+          <Link href="/" className="md:hover:text-[#073f4d]">Home</Link> <span className="mx-2">›</span>
+          <Link href="/properties" className="md:hover:text-[#073f4d]">Properties</Link> <span className="mx-2">›</span>
           <span className="text-[#123f4b]">{property.title}</span>
         </div>
       </section>
