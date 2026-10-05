@@ -46,7 +46,7 @@ export function UrbanPropertiesShowcase() {
                   'group flex items-center justify-between border p-4 text-left transition duration-300 md:p-5',
                   activeIndex === index
                     ? 'border-[#073f4d] bg-[#073f4d] text-white shadow-[0_18px_46px_rgba(7,63,77,0.18)]'
-                    : 'border-[#123f4b]/10 bg-white/55 text-[#073f4d] hover:-translate-y-0.5 hover:border-[#123f4b]/25 hover:bg-white',
+                    : 'border-[#123f4b]/10 bg-white/55 text-[#073f4d] md:hover:-translate-y-0.5 md:hover:border-[#123f4b]/25 md:hover:bg-white',
                 ].join(' ')}
                 key={market.name}
                 onClick={() => setActiveIndex(index)}
@@ -57,7 +57,7 @@ export function UrbanPropertiesShowcase() {
                   <span className="block text-xs font-bold uppercase tracking-[0.18em] opacity-70">0{index + 1}</span>
                   <span className="mt-1 block font-serif text-xl md:text-2xl">{market.name}</span>
                 </span>
-                <span className="text-2xl transition group-hover:translate-x-1">→</span>
+                <span className="text-2xl transition md:group-hover:translate-x-1">→</span>
               </button>
             ))}
           </div>
@@ -70,7 +70,7 @@ export function UrbanPropertiesShowcase() {
                 aria-label={`Show ${market.name}`}
                 className={[
                   'relative min-h-[150px] overflow-hidden border transition duration-300',
-                  activeIndex === index ? 'border-[#073f4d] opacity-100' : 'border-transparent opacity-65 hover:opacity-100',
+                  activeIndex === index ? 'border-[#073f4d] opacity-100' : 'border-transparent opacity-65 md:hover:opacity-100',
                 ].join(' ')}
                 key={market.name}
                 onClick={() => setActiveIndex(index)}

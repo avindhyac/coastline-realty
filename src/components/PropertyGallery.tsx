@@ -74,15 +74,15 @@ export function PropertyGallery({ images, title }: Props) {
             onTouchEnd={(event) => onTouchEnd(event.changedTouches[0]?.clientX ?? 0)}
           >
             {gallery.map((image, index) => (
-              <div className={["absolute inset-0 transition duration-700", index === active ? 'opacity-100 scale-100 group-hover:scale-[1.015]' : 'opacity-0 scale-100'].join(' ')} key={`${image.alt}-${index}`}>
+              <div className={["absolute inset-0 transition duration-700", index === active ? 'opacity-100 scale-100 md:group-hover:scale-[1.015]' : 'opacity-0 scale-100'].join(' ')} key={`${image.alt}-${index}`}>
                 {image.type === 'url' && !image.src ? <div className="flex h-full items-center justify-center">Image coming soon</div> : <GalleryVisual image={image} priority={index === 0} />}
               </div>
             ))}
 
             {count > 1 ? (
               <>
-                <button aria-label="Previous image" className="absolute left-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white opacity-0 backdrop-blur transition hover:bg-black/50 group-hover:opacity-100 md:flex" onClick={previous} type="button">‹</button>
-                <button aria-label="Next image" className="absolute right-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white opacity-0 backdrop-blur transition hover:bg-black/50 group-hover:opacity-100 md:flex" onClick={next} type="button">›</button>
+                <button aria-label="Previous image" className="absolute left-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white opacity-0 backdrop-blur transition md:hover:bg-black/50 md:group-hover:opacity-100 md:flex" onClick={previous} type="button">‹</button>
+                <button aria-label="Next image" className="absolute right-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white opacity-0 backdrop-blur transition md:hover:bg-black/50 md:group-hover:opacity-100 md:flex" onClick={next} type="button">›</button>
               </>
             ) : null}
 
@@ -99,7 +99,7 @@ export function PropertyGallery({ images, title }: Props) {
         <div className="fixed inset-0 z-[90] bg-black/92 text-white" role="dialog" aria-modal="true" aria-label={`${title} photo gallery`}>
           <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-4 md:p-6">
             <span className="text-sm font-bold uppercase tracking-[0.16em]">{active + 1} / {count}</span>
-            <button className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-2xl backdrop-blur hover:bg-white/20" onClick={() => setLightboxOpen(false)} type="button" aria-label="Close gallery">×</button>
+            <button className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-2xl backdrop-blur md:hover:bg-white/20" onClick={() => setLightboxOpen(false)} type="button" aria-label="Close gallery">×</button>
           </div>
           <div
             className="flex h-full items-center justify-center p-4 pt-16 md:px-12 md:pb-32 md:pt-20"
@@ -112,12 +112,12 @@ export function PropertyGallery({ images, title }: Props) {
           </div>
           {count > 1 ? (
             <>
-              <button aria-label="Previous image" className="absolute left-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-3xl backdrop-blur hover:bg-white/20" onClick={previous} type="button">‹</button>
-              <button aria-label="Next image" className="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-3xl backdrop-blur hover:bg-white/20" onClick={next} type="button">›</button>
+              <button aria-label="Previous image" className="absolute left-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-3xl backdrop-blur md:hover:bg-white/20" onClick={previous} type="button">‹</button>
+              <button aria-label="Next image" className="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-3xl backdrop-blur md:hover:bg-white/20" onClick={next} type="button">›</button>
               <div className="absolute inset-x-0 bottom-0 hidden border-t border-white/10 bg-black/35 px-6 py-4 backdrop-blur md:block">
                 <div className="mx-auto flex max-w-5xl gap-3 overflow-x-auto">
                   {gallery.map((image, index) => (
-                    <button className={["relative h-20 w-32 shrink-0 overflow-hidden bg-white/10 transition hover:brightness-110", active === index ? 'ring-2 ring-white' : 'opacity-70'].join(' ')} key={`${image.alt}-film-${index}`} onClick={() => interactTo(index)} type="button">
+                    <button className={["relative h-20 w-32 shrink-0 overflow-hidden bg-white/10 transition md:hover:brightness-110", active === index ? 'ring-2 ring-white' : 'opacity-70'].join(' ')} key={`${image.alt}-film-${index}`} onClick={() => interactTo(index)} type="button">
                       <GalleryVisual image={image} />
                     </button>
                   ))}

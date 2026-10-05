@@ -67,7 +67,7 @@ export function PropertyFilters({ activeMode, cities, filters }: Props) {
   return (
     <>
       <button
-        className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#123f4b]/15 bg-white px-5 text-sm font-bold uppercase tracking-[0.14em] text-[#073f4d] shadow-[0_10px_28px_rgba(18,63,75,0.08)] transition hover:bg-[#fbfaf7] md:w-auto"
+        className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#123f4b]/15 bg-white px-5 text-sm font-bold uppercase tracking-[0.14em] text-[#073f4d] shadow-[0_10px_28px_rgba(18,63,75,0.08)] transition md:hover:bg-[#fbfaf7] md:w-auto"
         onClick={() => setIsOpen(true)}
         type="button"
       >
@@ -108,7 +108,7 @@ export function PropertyFilters({ activeMode, cities, filters }: Props) {
 
               <div className="sticky bottom-0 -mx-5 mt-7 flex gap-3 border-t border-[#123f4b]/10 bg-[#fbfaf7]/95 p-5 backdrop-blur md:-mx-7 md:px-7">
                 <a className="flex min-h-12 flex-1 items-center justify-center rounded-full border border-[#123f4b]/20 bg-white px-5 text-sm font-bold uppercase tracking-[0.14em] text-[#073f4d]" href={`/properties?mode=${activeMode}${filters.q ? `&q=${encodeURIComponent(filters.q)}` : ''}`}>Clear</a>
-                <button className="min-h-12 flex-[1.4] rounded-full bg-[#073f4d] px-5 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_30px_rgba(7,63,77,0.22)] transition hover:bg-[#0b5264]" type="submit">Show Properties</button>
+                <button className="min-h-12 flex-[1.4] rounded-full bg-[#073f4d] px-5 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_30px_rgba(7,63,77,0.22)] transition md:hover:bg-[#0b5264]" type="submit">Show Properties</button>
               </div>
             </form>
           </div>
