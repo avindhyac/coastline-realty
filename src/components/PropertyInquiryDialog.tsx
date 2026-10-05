@@ -23,7 +23,7 @@ export function PropertyInquiryDialog({ form, propertyTitle, shareUrl }: Props) 
         <p className="mt-3 text-base leading-7 text-[#26383d]/80">Request viewing times, title details, pricing guidance, and next steps from the Coastline Realty team.</p>
         <div className="mt-6 grid gap-3">
           <button className="c-button c-button--gooey min-h-12 w-full" onClick={() => setIsOpen(true)} type="button"><span className="c-button__label">Enquire Now</span><span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span></button>
-          <a className="min-h-12 rounded-sm border border-[#123f4b]/20 bg-white px-6 py-4 text-center text-xs font-bold uppercase tracking-[0.18em] text-[#073f4d] transition hover:bg-[#f8f6f0]" href={shareHref}>Share Property</a>
+          <a className="min-h-12 rounded-sm border border-[#123f4b]/20 bg-white px-6 py-4 text-center text-xs font-bold uppercase tracking-[0.18em] text-[#073f4d] transition md:hover:bg-[#f8f6f0]" href={shareHref}>Share Property</a>
         </div>
       </aside>
 

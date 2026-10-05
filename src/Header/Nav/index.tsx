@@ -10,10 +10,10 @@ import { usePathname, useSearchParams } from 'next/navigation'
 
 const navLinkClass = (active: boolean) =>
   [
-    'group relative inline-flex min-h-12 items-center px-1 py-2 text-base font-semibold leading-none transition duration-300 after:absolute after:inset-x-0 after:bottom-1 after:h-px after:origin-left after:bg-[#073f4d] after:transition-transform after:duration-300 hover:text-[#073f4d] hover:after:scale-x-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#073f4d]',
+    'group relative inline-flex min-h-12 items-center px-1 py-2 text-base font-semibold leading-none transition duration-300 after:absolute after:inset-x-0 after:bottom-1 after:h-px after:origin-left after:bg-[#073f4d] after:transition-transform after:duration-300 md:hover:text-[#073f4d] md:hover:after:scale-x-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#073f4d]',
     active
       ? 'text-[#073f4d] after:scale-x-100'
-      : 'text-[#073f4d]/70 after:scale-x-0 hover:text-[#073f4d]',
+      : 'text-[#073f4d]/70 after:scale-x-0 md:hover:text-[#073f4d]',
   ].join(' ')
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = () => {
@@ -43,8 +43,8 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = () => {
       >
         Lease
       </Link>
-      <Link className={navLinkClass(pathname === '/about')} href="/about">
-        About us
+      <Link className={navLinkClass(pathname === '/services')} href="/services">
+        Services
       </Link>
     </>
   )
@@ -87,7 +87,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = () => {
       <button
         aria-expanded={isOpen}
         aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
-        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#123f4b]/20 text-[#073f4d] transition hover:border-[#073f4d]/45 hover:bg-[#073f4d]/5 md:h-12 md:w-12 lg:hidden"
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#123f4b]/20 text-[#073f4d] transition md:hover:border-[#073f4d]/45 md:hover:bg-[#073f4d]/5 md:h-12 md:w-12 lg:hidden"
         onClick={() => setIsOpen((value) => !value)}
         type="button"
       >

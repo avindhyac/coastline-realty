@@ -59,7 +59,7 @@ export function PropertyModeSelector({ activeMode }: { activeMode?: PropertyMode
               <span className={isActive ? 'block' : 'gooey-card__content block'}>
                 <span className="flex items-center justify-between gap-4">
                   <span className="text-lg font-bold md:text-base">{item.shortLabel}</span>
-                  <span className="text-xl transition group-hover:translate-x-1" aria-hidden="true">
+                  <span className="text-xl transition md:group-hover:translate-x-1" aria-hidden="true">
                     →
                   </span>
                 </span>
