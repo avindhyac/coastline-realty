@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
+import type { Form as FormType } from '@payloadcms/plugin-form-builder/types'
 import type { Property, Media as MediaType } from '@/payload-types'
 
 import { PropertyCard } from '@/components/PropertyCard'
 import { PropertyGallery, type GalleryImage } from '@/components/PropertyGallery'
+import { PropertyInquiryDialog } from '@/components/PropertyInquiryDialog'
 import { PropertyPrice } from '@/components/PropertyPrice'
+import { siteContactPhone, siteContactPhoneHref } from '@/constants/contact'
 import { getPropertyDummyImages, isSeededPlaceholderMedia } from '@/utilities/propertyDummyImages'
 import configPromise from '@payload-config'
 import { draftMode } from 'next/headers'
@@ -11,6 +14,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { cache } from 'react'
 import { getPayload } from 'payload'
+import { getServerSideURL } from '@/utilities/getURL'
 
 const isMedia = (value: unknown): value is MediaType => typeof value === 'object' && value !== null && 'id' in value
 const labelize = (value?: string | null) => value || '—'
@@ -78,6 +82,8 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
     : gallery.map((media, index) => ({ type: 'media', media, alt: `${property.title} gallery image ${index + 1}` }))
   const location = [property.city, property.district, property.province].filter(Boolean).join(', ')
   const similarProperties = await querySimilarProperties(property)
+  const contactForm = await queryContactForm()
+  const shareUrl = `${getServerSideURL()}/properties/${property.slug}`
 
   return (
     <main className="bg-[#f4f1e9] pb-24 text-[#26383d] md:pb-0">
@@ -101,11 +107,23 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
                 <PropertyPrice className="mt-5 block text-3xl font-extrabold tracking-[-0.035em] text-[#17282d] md:text-4xl" value={property.listedPriceTotal} />
               </div>
 
-              <dl className="grid grid-cols-3 overflow-hidden rounded-2xl border border-[#123f4b]/10 bg-[#fbfaf7] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] sm:grid-cols-3 lg:mt-2">
-                <StatDetail icon="bed" label="Beds" value={property.bedrooms} />
-                <StatDetail icon="bath" label="Baths" value={property.bathrooms} />
-                <StatDetail icon="land" label="Perches" value={property.extentPerches ? `${property.extentPerches}` : null} />
-              </dl>
+              <div className="space-y-4 lg:mt-2">
+                <dl className="grid grid-cols-3 overflow-hidden rounded-2xl border border-[#123f4b]/10 bg-[#fbfaf7] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] sm:grid-cols-3">
+                  <StatDetail icon="bed" label="Beds" value={property.bedrooms} />
+                  <StatDetail icon="bath" label="Baths" value={property.bathrooms} />
+                  <StatDetail icon="land" label="Perches" value={property.extentPerches ? `${property.extentPerches}` : null} />
+                </dl>
+
+                <div className="hidden rounded-sm border border-[#123f4b]/10 bg-[#fbfaf7] p-4 text-center shadow-[0_12px_34px_rgba(18,63,75,0.06)] md:flex md:items-center md:gap-4 md:text-left">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#073f4d]/10 text-[#073f4d]" aria-hidden="true">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106a1.125 1.125 0 0 0-1.173.417l-.97 1.293a1.125 1.125 0 0 1-1.21.38 12.035 12.035 0 0 1-7.143-7.143 1.125 1.125 0 0 1 .38-1.21l1.293-.97c.366-.275.534-.741.417-1.173L6.963 3.102A1.125 1.125 0 0 0 5.872 2.25H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" /></svg>
+                  </span>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#123f4b]/60">Call to enquire</p>
+                    <a className="mt-2 block text-2xl font-extrabold tracking-[-0.03em] text-[#073f4d] underline-offset-4 md:hover:underline" href={siteContactPhoneHref}>{siteContactPhone}</a>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="mt-8 border-t border-[#123f4b]/10 pt-7">
@@ -134,7 +152,7 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
         </div>
       </section>
 
-      <section className="container grid gap-8 pb-20">
+      <section className="container grid gap-8 pb-20 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
         <div className="rounded-sm border border-[#123f4b]/10 bg-white/55 p-7 shadow-[0_18px_60px_rgba(18,63,75,0.06)]">
           <h2 className="text-3xl font-bold text-[#123f4b]">Facts & features</h2>
           <div className="mt-7 grid gap-8 md:grid-cols-3">
@@ -144,8 +162,10 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
           </div>
         </div>
 
+        <PropertyInquiryDialog form={contactForm} propertyTitle={property.title} shareUrl={shareUrl} />
+
         {property.googleMapsEmbedUrl ? (
-          <div>
+          <div className="lg:col-span-2">
             <h2 className="mb-5 text-3xl font-bold text-[#123f4b]">Location</h2>
             <div className="overflow-hidden rounded-sm border border-[#123f4b]/10 bg-white/55 shadow-[0_18px_60px_rgba(18,63,75,0.06)]">
               <iframe
@@ -190,6 +210,20 @@ const queryPropertyBySlug = cache(async ({ slug }: { slug: string }): Promise<Pr
   const payload = await getPayload({ config: configPromise })
   const result = await payload.find({ collection: 'properties', depth: 1, draft, limit: 1, overrideAccess: draft, pagination: false, where: { slug: { equals: slug } } })
   return result.docs?.[0] || null
+})
+
+const queryContactForm = cache(async (): Promise<FormType | null> => {
+  const payload = await getPayload({ config: configPromise })
+  const result = await payload.find({
+    collection: 'forms',
+    depth: 1,
+    limit: 1,
+    overrideAccess: false,
+    pagination: false,
+    where: { title: { equals: 'Contact Form' } },
+  })
+
+  return (result.docs?.[0] as unknown as FormType) || null
 })
 
 const querySimilarProperties = cache(async (property: Property): Promise<Property[]> => {
