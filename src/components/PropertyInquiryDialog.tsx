@@ -4,6 +4,7 @@ import { useState } from 'react'
 import type { Form as FormType } from '@payloadcms/plugin-form-builder/types'
 
 import { PropertyInquiry } from '@/components/PropertyInquiry'
+import { siteContactPhone, siteContactPhoneHref } from '@/constants/contact'
 
 type Props = {
   form: FormType | null
@@ -21,6 +22,10 @@ export function PropertyInquiryDialog({ form, propertyTitle, shareUrl }: Props) 
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#123f4b]/70">Interested?</p>
         <h2 className="mt-3 text-3xl font-bold text-[#123f4b]">Enquire about this property</h2>
         <p className="mt-3 text-base leading-7 text-[#26383d]/80">Request viewing times, title details, pricing guidance, and next steps from the Coastline Realty team.</p>
+        <div className="mt-5 rounded-sm border border-[#123f4b]/10 bg-white p-4 text-center md:text-left">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#123f4b]/60">Prefer to call?</p>
+          <a className="mt-2 block text-2xl font-extrabold tracking-[-0.03em] text-[#073f4d] underline-offset-4 md:hover:underline" href={siteContactPhoneHref}>{siteContactPhone}</a>
+        </div>
         <div className="mt-6 grid gap-3">
           <button className="c-button c-button--gooey min-h-12 w-full" onClick={() => setIsOpen(true)} type="button"><span className="c-button__label">Enquire Now</span><span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span></button>
           <a className="min-h-12 rounded-sm border border-[#123f4b]/20 bg-white px-6 py-4 text-center text-xs font-bold uppercase tracking-[0.18em] text-[#073f4d] transition md:hover:bg-[#f8f6f0]" href={shareHref}>Share Property</a>
@@ -29,8 +34,8 @@ export function PropertyInquiryDialog({ form, propertyTitle, shareUrl }: Props) 
 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#123f4b]/10 bg-[#fbfaf7]/96 p-3 shadow-[0_-14px_40px_rgba(18,63,75,0.16)] backdrop-blur md:hidden">
         <div className="container flex gap-3 px-0">
-          <a className="flex min-h-12 flex-1 items-center justify-center rounded-sm border border-[#123f4b]/20 bg-white px-4 text-center text-xs font-bold uppercase tracking-[0.14em] text-[#073f4d]" href={shareHref}>Share</a>
-          <button className="c-button c-button--gooey min-h-12 flex-[1.7]" onClick={() => setIsOpen(true)} type="button"><span className="c-button__label">Enquire Now</span><span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span></button>
+          <a className="flex min-h-12 flex-1 flex-col items-center justify-center rounded-sm border border-[#123f4b]/20 bg-white px-4 text-center text-xs font-bold uppercase leading-4 tracking-[0.14em] text-[#073f4d]" href={siteContactPhoneHref}><span>Call</span><span>{siteContactPhone}</span></a>
+          <button className="c-button c-button--gooey min-h-12 flex-1" onClick={() => setIsOpen(true)} type="button"><span className="c-button__label">Enquire</span><span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span></button>
         </div>
       </div>
 
@@ -45,6 +50,9 @@ export function PropertyInquiryDialog({ form, propertyTitle, shareUrl }: Props) 
               <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#123f4b]/15 bg-white text-xl text-[#073f4d]" onClick={() => setIsOpen(false)} type="button" aria-label="Close enquiry form">×</button>
             </div>
             <div className="p-5 md:p-7">
+              <div className="mb-5 rounded-sm border border-[#123f4b]/10 bg-white p-4 text-sm text-[#26383d]/75">
+                Need a faster answer? Call <a className="font-bold text-[#073f4d] underline underline-offset-4" href={siteContactPhoneHref}>{siteContactPhone}</a>.
+              </div>
               <PropertyInquiry form={form} />
             </div>
           </div>
