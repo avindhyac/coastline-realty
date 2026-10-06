@@ -94,17 +94,30 @@ export default async function PropertiesPage({ searchParams }: Args) {
 
   const [properties, modeProperties] = await Promise.all([
     payload.find({
-    collection: 'properties',
-    depth: 1,
-    draft: false,
-    limit: 60,
-    overrideAccess: false,
-    pagination: false,
-    sort: '-featured,featuredSortOrder,-createdAt',
-    where: {
-      and: filters,
-    },
-  }),
+      collection: 'properties',
+      depth: 1,
+      draft: false,
+      limit: 60,
+      overrideAccess: false,
+      pagination: false,
+      select: {
+        id: true,
+        slug: true,
+        title: true,
+        city: true,
+        propertyType: true,
+        bedrooms: true,
+        bathrooms: true,
+        extentPerches: true,
+        listedPriceTotal: true,
+        listingType: true,
+        featuredImage: true,
+      },
+      sort: '-featured,featuredSortOrder,-createdAt',
+      where: {
+        and: filters,
+      },
+    }),
     payload.find({
       collection: 'properties',
       depth: 0,
@@ -164,8 +177,8 @@ export default async function PropertiesPage({ searchParams }: Args) {
 
         {properties.docs.length > 0 ? (
           <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
-            {properties.docs.map((property) => (
-              <PropertyCard key={property.id} property={property} />
+            {properties.docs.map((property, index) => (
+              <PropertyCard key={property.id} priority={index < 3} property={property} />
             ))}
           </div>
         ) : (

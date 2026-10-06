@@ -94,9 +94,8 @@ export default async function Home() {
         <div className="container">
           <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <p className="text-base font-semibold text-white/82">Featured properties</p>
-              <h2 className="mt-4 font-serif text-5xl tracking-[-0.055em] md:text-6xl">
-                Current featured listings
+              <h2 className="font-serif text-5xl uppercase tracking-[-0.055em] md:text-6xl">
+                CURATED PROPERTIES
               </h2>
             </div>
             <Link className="c-button c-button--gooey c-button--light" href="/properties">
