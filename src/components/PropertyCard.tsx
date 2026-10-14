@@ -1,4 +1,5 @@
 import type { Property } from '@/payload-types'
+import Image from 'next/image'
 
 import { Media } from '@/components/Media'
 import { PropertyPrice } from '@/components/PropertyPrice'
@@ -12,7 +13,14 @@ export function PropertyCard({ property }: { property: Property }) {
       <a className="flex h-full flex-col" href={`/properties/${property.slug}`}>
         <div className="relative aspect-[4/3] overflow-hidden bg-[#d9d4ca]">
           {dummyImage ? (
-            <img alt={property.title} className="h-full w-full object-cover transition duration-700 md:group-hover:scale-105" src={dummyImage} />
+            <Image
+              alt={property.title}
+              className="object-cover transition duration-700 md:group-hover:scale-105"
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              src={dummyImage}
+              unoptimized
+            />
           ) : property.featuredImage && typeof property.featuredImage === 'object' ? (
             <Media fill imgClassName="object-cover transition duration-700 md:group-hover:scale-105" resource={property.featuredImage} />
           ) : (

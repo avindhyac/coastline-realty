@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import type { Media as MediaType } from '@/payload-types'
+import Image from 'next/image'
 
 import { Media } from '@/components/Media'
 
@@ -16,7 +17,19 @@ type Props = {
 
 function GalleryVisual({ image, priority = false, fit = 'cover' }: { image: GalleryImage; priority?: boolean; fit?: 'cover' | 'contain' }) {
   const objectClass = fit === 'contain' ? 'object-contain' : 'object-cover'
-  if (image.type === 'url') return <img alt={image.alt} className={`h-full w-full ${objectClass}`} src={image.src} />
+  if (image.type === 'url') {
+    return (
+      <Image
+        alt={image.alt}
+        className={objectClass}
+        fill
+        priority={priority}
+        sizes="100vw"
+        src={image.src}
+        unoptimized={image.src.includes('unsplash.com/')}
+      />
+    )
+  }
   return <Media fill priority={priority} imgClassName={objectClass} resource={image.media} />
 }
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 const urbanMarkets = [
@@ -16,14 +17,14 @@ const urbanMarkets = [
     title: 'Connected city living with easier daily access',
     copy: 'Apartments and town properties for buyers who want Colombo access with a more residential rhythm.',
     href: '/properties?mode=buy&city=Rajagiriya',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80',
+    image: '/media/rajagiriya.jpg',
   },
   {
     name: 'Nawala',
     title: 'Residential pockets for modern family living',
     copy: 'Homes, apartments, and land in established urban neighbourhoods with strong rental and resale appeal.',
     href: '/properties?mode=buy&city=Nawala',
-    image: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1400&q=80',
+    image: '/media/nawala.jpg',
   },
 ]
 
@@ -76,7 +77,13 @@ export function UrbanPropertiesShowcase() {
                 onClick={() => setActiveIndex(index)}
                 type="button"
               >
-                <img alt={`${market.name} city property`} className="absolute inset-0 h-full w-full object-cover" src={market.image} />
+                <Image
+                  alt={`${market.name} city property`}
+                  className="object-cover"
+                  fill
+                  sizes="(min-width: 640px) 22vw, 100vw"
+                  src={market.image}
+                />
                 <span className="absolute inset-0 bg-[#073f4d]/20" />
                 <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-[#073f4d]">{market.name}</span>
               </button>
@@ -84,7 +91,14 @@ export function UrbanPropertiesShowcase() {
           </div>
 
           <article className="relative min-h-[430px] overflow-hidden bg-[#d9d4ca] shadow-[0_22px_70px_rgba(18,63,75,0.12)] sm:min-h-[520px]">
-            <img alt={active.title} className="absolute inset-0 h-full w-full object-cover transition duration-700" src={active.image} />
+            <Image
+              alt={active.title}
+              className="object-cover transition duration-700"
+              fill
+              priority
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              src={active.image}
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-[#062f39]/88 via-[#062f39]/30 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-6 text-white md:p-9">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/72">{active.name}</p>

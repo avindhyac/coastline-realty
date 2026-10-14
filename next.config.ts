@@ -22,6 +22,9 @@ const nextConfig: NextConfig = {
       {
         pathname: '/api/media/file/**',
       },
+      {
+        pathname: '/media/**',
+      },
     ],
     qualities: [100],
     remotePatterns: [
@@ -33,6 +36,18 @@ const nextConfig: NextConfig = {
           protocol: url.protocol.replace(':', '') as 'http' | 'https',
         }
       }),
+      {
+        hostname: 'images.unsplash.com',
+        protocol: 'https',
+      },
+      {
+        hostname: 'unsplash.com',
+        protocol: 'https',
+      },
+      {
+        hostname: 'raw.githubusercontent.com',
+        protocol: 'https',
+      },
     ],
   },
   webpack: (webpackConfig) => {
