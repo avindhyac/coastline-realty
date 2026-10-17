@@ -100,9 +100,10 @@ export default function ServicesPage() {
             <div className="absolute -bottom-24 left-1/2 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
             <div className="relative grid gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(22rem,1fr)] lg:items-start lg:gap-10">
               <div>
-                <span className="inline-flex rounded-full bg-[#b5844f] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-[0_12px_30px_rgba(181,132,79,0.28)]">
-                  {featuredService.eyebrow}
-                </span>
+                <p className="flex items-center gap-3 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#e5bd87] sm:text-xs sm:tracking-[0.18em]">
+                  <span aria-hidden="true" className="h-px w-6 shrink-0 bg-[#d7b27a]" />
+                  <span>01 / {featuredService.eyebrow}</span>
+                </p>
                 <h3 className="mt-5 font-serif text-4xl leading-none tracking-[-0.05em] text-white md:text-6xl">
                   {featuredService.title}
                 </h3>
@@ -129,13 +130,16 @@ export default function ServicesPage() {
         ) : null}
 
         <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {supportingServices.map((service) => (
+          {supportingServices.map((service, index) => (
             <article
               className="border border-[#123f4b]/12 bg-white/72 p-7 shadow-[0_22px_70px_rgba(18,63,75,0.08)] md:p-8"
               key={service.title}
             >
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#b5844f]">{service.eyebrow}</p>
+                <p className="flex items-center gap-3 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#946438] sm:text-xs sm:tracking-[0.18em]">
+                  <span aria-hidden="true" className="h-px w-6 shrink-0 bg-[#b5844f]" />
+                  <span>{String(index + 2).padStart(2, '0')} / {service.eyebrow}</span>
+                </p>
                 <h3 className="mt-3 font-serif text-3xl leading-none tracking-[-0.04em] text-[#123f4b]">
                   {service.title}
                 </h3>

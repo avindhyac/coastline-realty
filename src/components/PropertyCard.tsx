@@ -34,7 +34,7 @@ export function PropertyCard({ property, priority = false }: { property: Propert
           <div className="mb-3 flex items-center justify-between gap-4 text-sm font-semibold text-[#123f4b]/80">
             <span>⌖ {property.city}</span><span>{property.propertyType}</span>
           </div>
-          <h3 className="text-2xl font-bold leading-tight tracking-[-0.025em] text-[#073f4d]">{property.title}</h3>
+          <h3 className="text-2xl leading-tight tracking-[-0.025em] text-[#073f4d]">{property.title}</h3>
           <div className="mt-5 grid grid-cols-3 gap-3 border-y border-[#123f4b]/10 py-4 text-sm text-[#26383d]/85">
             {property.bedrooms ? <span>{property.bedrooms} Beds</span> : <span>— Beds</span>}
             {property.bathrooms ? <span>{property.bathrooms} Baths</span> : <span>— Baths</span>}

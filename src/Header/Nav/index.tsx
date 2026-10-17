@@ -61,26 +61,9 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = () => {
 
       <div className="hidden lg:ml-7 lg:block">
         {isPropertyDetail ? (
-          <a className="c-button c-button--gooey min-h-12 self-center" href="#inquiry">
-            <span className="c-button__label">Schedule Viewing</span>
-            <span className="c-button__blobs" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </span>
-          </a>
+          <a className="c-button c-button--refined min-h-12 self-center" href="#inquiry">Schedule Viewing</a>
         ) : (
-          <Link
-            className="c-button c-button--gooey c-button--compact min-h-12 self-center"
-            href="/contact"
-          >
-            <span className="c-button__label">Contact Us</span>
-            <span className="c-button__blobs" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </span>
-          </Link>
+          <Link className="c-button c-button--refined c-button--compact min-h-12 self-center" href="/contact">Contact Us</Link>
         )}
       </div>
 
@@ -123,23 +106,9 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = () => {
             {links}
             <CurrencySwitcher className="mt-1 justify-self-start" />
             {isPropertyDetail ? (
-              <a className="c-button c-button--gooey mt-2 w-full" href="#inquiry">
-                <span className="c-button__label">Schedule Viewing</span>
-                <span className="c-button__blobs" aria-hidden="true">
-                  <span />
-                  <span />
-                  <span />
-                </span>
-              </a>
+              <a className="c-button c-button--refined mt-2 w-full" href="#inquiry">Schedule Viewing</a>
             ) : (
-              <Link className="c-button c-button--gooey mt-2 w-full" href="/contact">
-                <span className="c-button__label">Contact Us</span>
-                <span className="c-button__blobs" aria-hidden="true">
-                  <span />
-                  <span />
-                  <span />
-                </span>
-              </Link>
+              <Link className="c-button c-button--refined mt-2 w-full" href="/contact">Contact Us</Link>
             )}
           </nav>
         </div>

@@ -127,7 +127,7 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
             </div>
 
             <div className="mt-8 border-t border-[#123f4b]/10 pt-7">
-              <h2 className="text-2xl font-bold text-[#123f4b]">Overview</h2>
+              <h2 className="text-2xl text-[#123f4b]">Overview</h2>
               <p className="mt-4 max-w-4xl text-lg leading-8 text-[#26383d]/84">{property.description || 'More details for this listing will be added by the Coastline Realty team.'}</p>
             </div>
           </div>
@@ -135,7 +135,7 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
       </section>
 
       <section className="container pb-10">
-        <h2 className="text-2xl font-bold text-[#123f4b]">Property Highlights</h2>
+        <h2 className="text-2xl text-[#123f4b]">Property Highlights</h2>
         <ul className="mt-5 space-y-3 border-b border-[#123f4b]/10 pb-7 text-sm leading-6 text-[#26383d]/82 md:hidden">
           <li className="flex gap-3"><span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#123f4b]/25 text-xs text-[#123f4b]">✓</span><span>{labelize(property.propertyType)} listed for {property.listingType.toLowerCase()}</span></li>
           {property.seaView ? <li className="flex gap-3"><span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#123f4b]/25 text-xs text-[#123f4b]">✓</span><span>Ocean views from the property</span></li> : null}
@@ -154,11 +154,11 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
 
       <section className="container grid gap-8 pb-20 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
         <div className="rounded-sm border border-[#123f4b]/10 bg-white/55 p-7 shadow-[0_18px_60px_rgba(18,63,75,0.06)]">
-          <h2 className="text-3xl font-bold text-[#123f4b]">Facts & features</h2>
+          <h2 className="text-3xl text-[#123f4b]">Facts & features</h2>
           <div className="mt-7 grid gap-8 md:grid-cols-3">
-            <div><h3 className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#123f4b]">Property</h3><dl className="space-y-4"><Detail label="Type" value={property.propertyType} /><Detail label="Status" value={property.listingStatus} /><Detail label="Title" value={property.titleType} /><Detail label="Extent" value={property.extentPerches ? `${property.extentPerches} Perches` : null} /></dl></div>
-            <div><h3 className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#123f4b]">Interior & amenities</h3><dl className="space-y-4"><Detail label="Bedrooms" value={property.bedrooms} /><Detail label="Bathrooms" value={property.bathrooms} /><Detail label="Sea view" value={property.seaView ? 'Yes' : null} /><Detail label="Pool" value={property.pool ? 'Yes' : null} /><Detail label="Furnished" value={property.furnishedStatus} /><Detail label="Frontage" value={property.frontageFt ? `${property.frontageFt} ft` : null} /></dl></div>
-            <div><h3 className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#123f4b]">Location</h3><p className="text-sm leading-7 text-[#26383d]/75">{property.address}. {location}</p>{property.distanceToBeachM ? <p className="mt-4 text-sm font-medium text-[#123f4b]">{property.distanceToBeachM}m to the coast</p> : null}{property.googleMapsLink ? <a className="mt-5 inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#073f4d] underline underline-offset-4" href={property.googleMapsLink} target="_blank" rel="noreferrer">View on map ↗</a> : null}</div>
+            <div><h3 className="mb-5 font-sans text-xs font-bold uppercase tracking-[0.22em] text-[#123f4b]">Property</h3><dl className="space-y-4"><Detail label="Type" value={property.propertyType} /><Detail label="Status" value={property.listingStatus} /><Detail label="Title" value={property.titleType} /><Detail label="Extent" value={property.extentPerches ? `${property.extentPerches} Perches` : null} /></dl></div>
+            <div><h3 className="mb-5 font-sans text-xs font-bold uppercase tracking-[0.22em] text-[#123f4b]">Interior & amenities</h3><dl className="space-y-4"><Detail label="Bedrooms" value={property.bedrooms} /><Detail label="Bathrooms" value={property.bathrooms} /><Detail label="Sea view" value={property.seaView ? 'Yes' : null} /><Detail label="Pool" value={property.pool ? 'Yes' : null} /><Detail label="Furnished" value={property.furnishedStatus} /><Detail label="Frontage" value={property.frontageFt ? `${property.frontageFt} ft` : null} /></dl></div>
+            <div><h3 className="mb-5 font-sans text-xs font-bold uppercase tracking-[0.22em] text-[#123f4b]">Location</h3><p className="text-sm leading-7 text-[#26383d]/75">{property.address}. {location}</p>{property.distanceToBeachM ? <p className="mt-4 text-sm font-medium text-[#123f4b]">{property.distanceToBeachM}m to the coast</p> : null}{property.googleMapsLink ? <a className="mt-5 inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#073f4d] underline underline-offset-4" href={property.googleMapsLink} target="_blank" rel="noreferrer">View on map ↗</a> : null}</div>
           </div>
         </div>
 
@@ -166,7 +166,7 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
 
         {property.googleMapsEmbedUrl ? (
           <div className="lg:col-span-2">
-            <h2 className="mb-5 text-3xl font-bold text-[#123f4b]">Location</h2>
+            <h2 className="mb-5 text-3xl text-[#123f4b]">Location</h2>
             <div className="overflow-hidden rounded-sm border border-[#123f4b]/10 bg-white/55 shadow-[0_18px_60px_rgba(18,63,75,0.06)]">
               <iframe
                 allowFullScreen
@@ -186,7 +186,7 @@ export default async function PropertyDetailPage({ params: paramsPromise }: Args
           <div className="mb-7 flex items-end justify-between gap-4 border-t border-[#123f4b]/10 pt-10">
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#123f4b]/70">Keep browsing</p>
-              <h2 className="mt-2 text-3xl font-bold text-[#123f4b]">Similar properties</h2>
+              <h2 className="mt-2 text-3xl text-[#123f4b]">Similar properties</h2>
             </div>
             <Link className="hidden text-sm font-bold uppercase tracking-[0.16em] text-[#073f4d] underline underline-offset-4 md:inline-block" href="/properties">View all</Link>
           </div>
