@@ -2,86 +2,38 @@ import Link from 'next/link'
 
 type PropertyMode = 'buy' | 'rent' | 'lease'
 
-const modes: Array<{
-  mode: PropertyMode
-  label: string
-  shortLabel: string
-  href: string
-  description: string
-}> = [
-  {
-    mode: 'buy',
-    label: 'Buy a Property',
-    shortLabel: 'Buy',
-    href: '/properties?mode=buy',
-    description: 'Homes, villas, and land for sale across Sri Lanka.',
-  },
-  {
-    mode: 'rent',
-    label: 'Rent a Property',
-    shortLabel: 'Rent',
-    href: '/properties?mode=rent',
-    description: 'Selected rentals for short and long-term coastal living.',
-  },
-  {
-    mode: 'lease',
-    label: 'Lease a Property',
-    shortLabel: 'Lease',
-    href: '/properties?mode=lease',
-    description: 'Lease opportunities for private, commercial, or investment use.',
-  },
+const modes: Array<{ mode: PropertyMode; label: string; href: string }> = [
+  { mode: 'buy', label: 'Buy', href: '/properties?mode=buy' },
+  { mode: 'rent', label: 'Rent', href: '/properties?mode=rent' },
+  { mode: 'lease', label: 'Lease', href: '/properties?mode=lease' },
 ]
 
-export function PropertyModeSelector({ activeMode }: { activeMode?: PropertyMode }) {
+export function PropertyModeSelector({ activeMode, appearance = 'dark' }: { activeMode?: PropertyMode; appearance?: 'dark' | 'light' }) {
+  const isLight = appearance === 'light'
+
   return (
-    <div className="border border-[#123f4b]/15 bg-[#fbfaf7] p-3 shadow-[0_12px_36px_rgba(18,63,75,0.08)] md:p-3 md:shadow-[0_18px_70px_rgba(18,63,75,0.12)]">
-      <div className="px-1 pb-3 md:px-2 md:pb-4">
-        <p className="font-serif text-2xl leading-none tracking-[-0.035em] text-[#073f4d] md:text-3xl">
-          What are you looking to do?
-        </p>
-      </div>
-      <div className="grid gap-2 md:grid-cols-3 md:gap-3">
-        {modes.map((item) => {
-          const isActive = item.mode === activeMode
+    <nav aria-label="Property listing type" className={isLight ? 'grid w-full grid-cols-3 border border-[#073f4d]/20 bg-white md:gap-4 md:border-0 md:bg-transparent' : 'mx-auto flex w-full max-w-md items-center justify-center gap-2 border-b border-white/30 sm:gap-6'}>
+      {modes.map((item) => {
+        const isActive = item.mode === activeMode
 
-          return (
-            <Link
-              aria-current={isActive ? 'page' : undefined}
-              className={[
-                'group block border px-5 py-4 text-left focus:outline-2 focus:outline-offset-2 focus:outline-[#073f4d] md:p-6',
-                isActive
-                  ? 'border-[#073f4d] bg-[#073f4d] text-white shadow-[0_8px_22px_rgba(7,63,77,0.18)] md:shadow-[0_14px_35px_rgba(7,63,77,0.22)]'
-                  : 'gooey-card border-[#123f4b]/10 bg-white/60',
-              ].join(' ')}
-              href={item.href}
-              key={item.mode}
-            >
-              <span className={isActive ? 'block' : 'gooey-card__content block'}>
-                <span className="flex items-center justify-between gap-4">
-                  <span className="text-lg font-bold md:text-base">{item.shortLabel}</span>
-                  <span className="text-xl transition md:group-hover:translate-x-1" aria-hidden="true">
-                    →
-                  </span>
-                </span>
-                <span className="mt-1 block text-sm font-semibold opacity-80 md:hidden">
-                  {item.label}
-                </span>
-                <span
-                  className={[
-                    'mt-3 block text-sm leading-6 md:text-base md:leading-7',
-                    isActive ? 'text-white/86' : 'text-current/76',
-                  ].join(' ')}
-                >
-                  {item.description}
-                </span>
-              </span>
-              {!isActive ? <span className="gooey-card__blobs" aria-hidden="true"><span /><span /><span /></span> : null}
-            </Link>
-          )
-        })}
-      </div>
-
-    </div>
+        return (
+          <Link
+            aria-current={isActive ? 'page' : undefined}
+            className={isLight
+              ? 'group flex min-h-14 items-center justify-center border-r border-[#073f4d]/15 px-2 py-3 text-sm text-[#073f4d] transition-[background-color,border-color,box-shadow] duration-200 last:border-r-0 hover:bg-[#eef4f2] focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#073f4d] motion-reduce:transition-none md:min-h-24 md:gap-4 md:border md:border-[#073f4d]/15 md:last:border-r md:bg-white md:text-lg md:hover:border-[#073f4d] md:hover:shadow-[0_8px_24px_rgba(7,63,77,0.10)]'
+              : [
+                  'relative inline-flex min-h-14 flex-1 items-center justify-center px-2 py-3 text-sm font-semibold uppercase tracking-[0.16em] transition-colors duration-300 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:bg-white after:transition-transform after:duration-300 motion-reduce:transition-none motion-reduce:after:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:text-base',
+                  isActive ? 'text-white after:scale-x-100' : 'text-white/70 after:scale-x-0 hover:text-white hover:after:scale-x-100 focus-visible:after:scale-x-100',
+                ].join(' ')}
+            href={item.href}
+            key={item.mode}
+          >
+            <span className="font-semibold uppercase tracking-[0.12em]">{item.label}</span>
+            {isLight ? <span aria-hidden="true" className="hidden text-lg leading-none text-[#073f4d]/60 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none md:inline">→</span> : null}
+          </Link>
+        )
+      })}
+    </nav>
   )
 }
 

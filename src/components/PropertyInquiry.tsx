@@ -8,10 +8,7 @@ import { FormBlock } from '@/blocks/Form/Component'
 export function PropertyInquiry({ form }: { form?: FormType | null }) {
   if (!form) {
     return (
-      <Link className="c-button c-button--gooey w-full" href="/contact">
-        <span className="c-button__label">Send inquiry</span>
-        <span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span>
-      </Link>
+      <Link className="c-button c-button--refined w-full" href="/contact">Send inquiry</Link>
     )
   }
 

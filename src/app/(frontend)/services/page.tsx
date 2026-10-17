@@ -65,24 +65,21 @@ export default function ServicesPage() {
 
   return (
     <main className="bg-[#f8f6f0] text-[#26383d]">
-      <section className="relative isolate overflow-hidden border-b border-[#123f4b]/10 bg-[#073f4d] text-white">
+      <section className="relative isolate overflow-hidden border-b border-[#123f4b]/10 bg-[#f4f1e9] text-white md:text-[#073f4d]">
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-cover bg-center opacity-55"
+          className="absolute inset-0 bg-cover bg-center md:bg-[center_42%]"
           style={{ backgroundImage: `url(${siteImages.aerial})` }}
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,63,77,0.94)_0%,rgba(7,63,77,0.72)_48%,rgba(7,63,77,0.25)_100%),linear-gradient(0deg,rgba(7,63,77,0.82)_0%,rgba(7,63,77,0.08)_58%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08)_0%,rgba(0,0,0,0.22)_42%,rgba(0,0,0,0.68)_100%)] md:hidden" />
 
-        <div className="container relative grid min-h-[38rem] content-end gap-12 pb-16 pt-36 md:min-h-[38rem] md:grid-cols-[minmax(0,1fr)_24rem] md:items-end md:gap-10 md:pb-20 md:pt-32 lg:min-h-[42rem]">
-          <div>
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-white/72">Services</p>
-            <h1 className="mt-5 max-w-5xl font-serif text-5xl leading-[0.96] tracking-[-0.055em] text-balance sm:text-6xl md:text-7xl md:leading-[0.92] lg:text-8xl">
+        <div className="container relative flex min-h-[32rem] items-end pb-14 pt-32 md:min-h-[36rem] md:items-center md:justify-end md:py-16 lg:min-h-[40rem]">
+          <div className="max-w-[36rem] md:max-w-3xl md:bg-[#fbfaf7]/94 md:p-10 md:shadow-[0_24px_90px_rgba(0,0,0,0.22)] md:backdrop-blur">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-white/78 md:text-base md:font-semibold md:normal-case md:tracking-normal md:text-[#123f4b]/80">Coastline Realty services</p>
+            <h1 className="mt-5 font-serif text-[3.2rem] leading-[0.92] tracking-[-0.06em] text-balance drop-shadow-[0_3px_18px_rgba(0,0,0,0.28)] md:text-7xl md:leading-[0.98] md:tracking-[-0.055em] md:drop-shadow-none">
               Property decisions need more than a listing.
             </h1>
-          </div>
-
-          <div className="border-t border-white/20 pt-6 md:mb-2 md:border-l md:border-t-0 md:pl-6 md:pt-0">
-            <p className="max-w-xl text-base leading-8 text-white/82 md:text-lg">
+            <p className="mt-5 max-w-[32rem] text-lg leading-7 text-white/86 md:mt-6 md:max-w-2xl md:text-2xl md:leading-8 md:text-[#26383d]/86">
               Coastline combines brokering, advisory, legal coordination, and property management so each deal is approached with the full decision in mind.
             </p>
           </div>
@@ -103,9 +100,10 @@ export default function ServicesPage() {
             <div className="absolute -bottom-24 left-1/2 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
             <div className="relative grid gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(22rem,1fr)] lg:items-start lg:gap-10">
               <div>
-                <span className="inline-flex rounded-full bg-[#b5844f] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-[0_12px_30px_rgba(181,132,79,0.28)]">
-                  {featuredService.eyebrow}
-                </span>
+                <p className="flex items-center gap-3 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#e5bd87] sm:text-xs sm:tracking-[0.18em]">
+                  <span aria-hidden="true" className="h-px w-6 shrink-0 bg-[#d7b27a]" />
+                  <span>01 / {featuredService.eyebrow}</span>
+                </p>
                 <h3 className="mt-5 font-serif text-4xl leading-none tracking-[-0.05em] text-white md:text-6xl">
                   {featuredService.title}
                 </h3>
@@ -132,13 +130,16 @@ export default function ServicesPage() {
         ) : null}
 
         <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {supportingServices.map((service) => (
+          {supportingServices.map((service, index) => (
             <article
               className="border border-[#123f4b]/12 bg-white/72 p-7 shadow-[0_22px_70px_rgba(18,63,75,0.08)] md:p-8"
               key={service.title}
             >
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#b5844f]">{service.eyebrow}</p>
+                <p className="flex items-center gap-3 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#946438] sm:text-xs sm:tracking-[0.18em]">
+                  <span aria-hidden="true" className="h-px w-6 shrink-0 bg-[#b5844f]" />
+                  <span>{String(index + 2).padStart(2, '0')} / {service.eyebrow}</span>
+                </p>
                 <h3 className="mt-3 font-serif text-3xl leading-none tracking-[-0.04em] text-[#123f4b]">
                   {service.title}
                 </h3>

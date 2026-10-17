@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import type { Form as FormType } from '@payloadcms/plugin-form-builder/types'
 
 import { FormBlock } from '@/blocks/Form/Component'
+import { siteContactPhone, siteContactPhoneHref } from '@/constants/contact'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { cache } from 'react'
@@ -24,9 +25,16 @@ export default async function ContactPage() {
               Tell us what kind of place you are looking for.
             </h1>
           </div>
-          <p className="max-w-xl text-lg leading-8 text-[#26383d]/82 md:text-xl md:leading-9">
-            Share the shoreline, town, budget, or lifestyle you have in mind. Our team will connect you with the right Sri Lankan property options.
-          </p>
+          <div className="max-w-xl">
+            <p className="text-lg leading-8 text-[#26383d]/82 md:text-xl md:leading-9">
+              Share the shoreline, town, budget, or lifestyle you have in mind. Our team will connect you with the right Sri Lankan property options.
+            </p>
+            <div className="mt-7 rounded-sm border border-[#123f4b]/10 bg-white/70 p-5 shadow-[0_14px_40px_rgba(18,63,75,0.06)]">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#123f4b]/60">Call us</p>
+              <a className="mt-2 block text-2xl font-extrabold tracking-[-0.03em] text-[#073f4d] underline-offset-4 md:hover:underline" href={siteContactPhoneHref}>{siteContactPhone}</a>
+              <p className="mt-4 text-sm font-semibold text-[#26383d]/70">Coastline Realty Sri Lanka</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -50,7 +58,7 @@ export default async function ContactPage() {
                 containerClassName="w-full max-w-none px-0"
                 enableIntro={false}
                 form={contactForm}
-                formShellClassName="border-0 p-0 lg:p-0 [&_form>div]:space-y-4 [&_form>div>div]:mb-0 [&_input]:h-14 [&_input]:rounded-none [&_input]:border-[#123f4b]/15 [&_input]:bg-white [&_input]:px-4 [&_input]:text-base [&_input]:shadow-none [&_input]:focus-visible:ring-2 [&_input]:focus-visible:ring-[#073f4d]/15 [&_label]:mb-2 [&_label]:block [&_label]:text-[0.7rem] [&_label]:font-bold [&_label]:uppercase [&_label]:tracking-[0.16em] [&_label]:text-[#123f4b]/82 [&_textarea]:min-h-36 [&_textarea]:rounded-none [&_textarea]:border-[#123f4b]/15 [&_textarea]:bg-white [&_textarea]:px-4 [&_textarea]:py-3 [&_textarea]:text-base [&_textarea]:shadow-none [&_textarea]:focus-visible:ring-2 [&_textarea]:focus-visible:ring-[#073f4d]/15"
+                formShellClassName="border-0 p-0 lg:p-0 [&_form>div]:space-y-5 md:[&_form>div]:space-y-6 [&_form>div>div]:!mb-0 [&_form>div>div>div]:flex [&_form>div>div>div]:flex-col [&_form>div>div>div]:gap-2.5 [&_input]:h-[3.25rem] md:[&_input]:h-14 [&_input]:rounded-none [&_input]:border-[#123f4b]/15 [&_input]:bg-white [&_input]:px-4 [&_input]:text-base [&_input]:shadow-none [&_input]:focus-visible:ring-2 [&_input]:focus-visible:ring-[#073f4d]/15 [&_label]:block [&_label]:text-[0.7rem] [&_label]:font-bold [&_label]:leading-none [&_label]:uppercase [&_label]:tracking-[0.16em] [&_label]:text-[#123f4b]/82 [&_textarea]:min-h-36 md:[&_textarea]:min-h-40 [&_textarea]:rounded-none [&_textarea]:border-[#123f4b]/15 [&_textarea]:bg-white [&_textarea]:px-4 [&_textarea]:py-3 [&_textarea]:text-base [&_textarea]:shadow-none [&_textarea]:focus-visible:ring-2 [&_textarea]:focus-visible:ring-[#073f4d]/15"
               />
             ) : (
               <div className="border border-[#123f4b]/10 bg-white/70 p-8 text-[#26383d]/75">

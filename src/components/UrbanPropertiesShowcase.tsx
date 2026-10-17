@@ -104,10 +104,7 @@ export function UrbanPropertiesShowcase() {
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/72">{active.name}</p>
               <h3 className="mt-3 max-w-lg font-serif text-3xl leading-none tracking-[-0.035em] md:text-5xl">{active.title}</h3>
               <p className="mt-4 max-w-lg text-base leading-7 text-white/82">{active.copy}</p>
-              <Link className="c-button c-button--gooey c-button--light mt-6" href={active.href}>
-                <span className="c-button__label">Explore {active.name}</span>
-                <span className="c-button__blobs" aria-hidden="true"><span /><span /><span /></span>
-              </Link>
+              <Link className="c-button c-button--refined c-button--light mt-6" href={active.href}>Explore {active.name}</Link>
             </div>
           </article>
         </div>

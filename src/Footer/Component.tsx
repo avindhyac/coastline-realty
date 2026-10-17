@@ -33,23 +33,8 @@ export function Footer() {
                 </span>
               </Link>
 
-              <p className="mt-7 max-w-xl font-serif text-3xl leading-[1.05] tracking-[-0.04em] text-white md:text-5xl">
-                Sri Lankan property guidance, from coastal escapes to city investments.
-              </p>
-              <p className="mt-5 max-w-lg text-base leading-7 text-white/68 md:text-lg md:leading-8">
-                We help buyers, tenants, landlords, and investors evaluate homes, land, villas,
-                apartments, and commercial opportunities with a sharper local lens.
-              </p>
-
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link className="c-button c-button--gooey c-button--light min-h-12" href="/contact">
-                  <span className="c-button__label">Start a Conversation</span>
-                  <span className="c-button__blobs" aria-hidden="true">
-                    <span />
-                    <span />
-                    <span />
-                  </span>
-                </Link>
+                <Link className="c-button c-button--refined c-button--light min-h-12" href="/contact">Start a Conversation</Link>
                 <Link
                   className="inline-flex min-h-12 items-center justify-center border border-white/18 px-5 text-xs font-extrabold uppercase tracking-[0.16em] text-white/82 transition md:hover:border-white/36 md:hover:bg-white/8 md:hover:text-white"
                   href="/properties"
@@ -61,7 +46,7 @@ export function Footer() {
 
             <div className="grid gap-8 sm:grid-cols-2 lg:pt-3">
               <div>
-                <h2 className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#d7b27a]">
+                <h2 className="font-sans text-xs font-extrabold uppercase tracking-[0.2em] text-[#d7b27a]">
                   Markets
                 </h2>
                 <nav aria-label="Property markets" className="mt-5 grid gap-3">
@@ -74,7 +59,7 @@ export function Footer() {
               </div>
 
               <div>
-                <h2 className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#d7b27a]">
+                <h2 className="font-sans text-xs font-extrabold uppercase tracking-[0.2em] text-[#d7b27a]">
                   Contact
                 </h2>
                 <div className="mt-5 space-y-4 text-sm leading-7 text-white/68">

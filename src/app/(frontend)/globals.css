@@ -1,6 +1,14 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+@font-face {
+  font-family: 'Heldane';
+  src: url('/heldane-test-converted.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 @config '../../../tailwind.config.mjs';
 
 @custom-variant dark (&:is([data-theme='dark'] *));
@@ -17,6 +25,7 @@
   h4,
   h5,
   h6 {
+    font-family: var(--font-serif);
     font-weight: unset;
     font-size: unset;
   }
@@ -50,12 +59,12 @@ h1, h2 {
   --breakpoint-2xl: 86rem;
   --font-mono: var(--font-geist-mono);
   --font-sans: var(--font-geist-sans);
+  --font-serif: 'Heldane', Georgia, serif;
 }
 
 @layer utilities {
   .c-button {
-    --gooey-color: #073f4d;
-    color: var(--gooey-color);
+    color: #073f4d;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -73,49 +82,22 @@ h1, h2 {
     z-index: 1;
   }
 
-  .c-button--gooey {
-    border: 2px solid currentColor;
+  .c-button--refined {
+    border: 1px solid currentColor;
     border-radius: 0;
-    overflow: hidden;
-    transition: color 700ms ease, border-color 700ms ease, background-color 700ms ease;
+    transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease, box-shadow 250ms ease;
   }
 
-  .c-button--gooey .c-button__label {
-    position: relative;
-    z-index: 2;
-  }
-
-  .c-button--gooey .c-button__blobs {
-    inset: 0 -1px -3px 0;
-    filter: url(#goo);
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-  }
-
-  .c-button--gooey .c-button__blobs span {
-    background-color: var(--gooey-color);
-    border-radius: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    transform: scale(1.4) translateY(125%) translateZ(0);
-    transition: transform 700ms ease;
-    width: 34%;
-  }
-
-  .c-button--gooey .c-button__blobs span:nth-child(1) { left: -5%; }
-  .c-button--gooey .c-button__blobs span:nth-child(2) { left: 30%; transition-delay: 60ms; }
-  .c-button--gooey .c-button__blobs span:nth-child(3) { left: 66%; transition-delay: 25ms; }
-
-  .c-button--gooey:hover,
-  .c-button--gooey:focus-visible {
+  .c-button--refined:hover {
+    border-color: #073f4d;
+    background-color: #073f4d;
     color: #fff;
+    box-shadow: 0 8px 24px rgb(7 63 77 / 0.14);
   }
 
-  .c-button--gooey:hover .c-button__blobs span,
-  .c-button--gooey:focus-visible .c-button__blobs span {
-    transform: scale(1.4) translateY(0) translateZ(0);
+  .c-button--refined:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
   }
 
   .c-button--compact {
@@ -125,98 +107,38 @@ h1, h2 {
   }
 
   .c-button--light {
-    --gooey-color: #fff;
     color: #fff;
   }
 
-  .c-button--light:hover,
-  .c-button--light:focus-visible {
+  .c-button--light:hover {
+    border-color: #fff;
+    background-color: #fff;
     color: #073f4d;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
   }
 
-  .gooey-card {
-    --gooey-color: #073f4d;
-    color: #073f4d;
-    overflow: hidden;
-    position: relative;
-    transition: border-color 700ms ease, color 700ms ease, transform 300ms ease, background-color 300ms ease;
-    z-index: 1;
-  }
-
-  .gooey-card__content {
-    position: relative;
-    z-index: 2;
-  }
-
-  .gooey-card__blobs {
-    inset: 0 -1px -3px 0;
-    filter: url(#goo);
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-  }
-
-  .gooey-card__blobs span {
-    background-color: var(--gooey-color);
-    border-radius: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    transform: scale(1.35) translateY(125%) translateZ(0);
-    transition: transform 700ms ease;
-    width: 34%;
-  }
-
-  .gooey-card__blobs span:nth-child(1) { left: -5%; }
-  .gooey-card__blobs span:nth-child(2) { left: 30%; transition-delay: 60ms; }
-  .gooey-card__blobs span:nth-child(3) { left: 66%; transition-delay: 25ms; }
-
-  .gooey-card:hover,
-  .gooey-card:focus-visible {
-    border-color: #073f4d;
-    color: #fff;
-    transform: translateY(-2px);
-  }
-
-  .gooey-card:hover .gooey-card__blobs span,
-  .gooey-card:focus-visible .gooey-card__blobs span {
-    transform: scale(1.35) translateY(0) translateZ(0);
+  @media (prefers-reduced-motion: reduce) {
+    .c-button--refined {
+      transition: none;
+    }
   }
 
   .container {
     width: 100%;
+    max-width: var(--breakpoint-2xl);
     margin-inline: auto;
-    padding-inline: 1rem;
-  }
-
-  @variant sm {
-    .container {
-      max-width: var(--breakpoint-sm);
-    }
+    padding-inline: 1.25rem;
   }
 
   @variant md {
     .container {
-      max-width: var(--breakpoint-md);
       padding-inline: 2rem;
-    }
-  }
-
-  @variant lg {
-    .container {
-      max-width: var(--breakpoint-lg);
     }
   }
 
   @variant xl {
     .container {
-      max-width: var(--breakpoint-xl);
-    }
-  }
-
-  @variant 2xl {
-    .container {
-      max-width: var(--breakpoint-2xl);
+      padding-inline: 3rem;
     }
   }
 }
