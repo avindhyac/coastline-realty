@@ -19,6 +19,18 @@ import { getServerSideURL } from './utilities/getURL'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const getDatabaseURL = () => {
+  if (process.env.DATABASE_TARGET === 'prod') {
+    return process.env.DATABASE_URL_PROD || process.env.DATABASE_URL || ''
+  }
+
+  if (process.env.DATABASE_TARGET === 'dev') {
+    return process.env.DATABASE_URL_DEV || process.env.DATABASE_URL || ''
+  }
+
+  return process.env.DATABASE_URL || process.env.DATABASE_URL_DEV || process.env.DATABASE_URL_PROD || ''
+}
+
 export default buildConfig({
   admin: {
     components: {
@@ -60,7 +72,7 @@ export default buildConfig({
   editor: defaultLexical,
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URL || '',
+      connectionString: getDatabaseURL(),
     },
   }),
   collections: [Pages, Posts, Properties, Media, Categories, Users],

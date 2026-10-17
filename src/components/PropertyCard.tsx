@@ -1,4 +1,5 @@
 import type { Property } from '@/payload-types'
+import Image from 'next/image'
 
 import { Media } from '@/components/Media'
 import { PropertyPrice } from '@/components/PropertyPrice'
@@ -12,7 +13,16 @@ export function PropertyCard({ property, priority = false }: { property: Propert
       <a className="flex h-full flex-col" href={`/properties/${property.slug}`}>
         <div className="relative aspect-[4/3] overflow-hidden bg-[#d9d4ca]">
           {dummyImage ? (
-            <img alt={property.title} className="h-full w-full object-cover transition duration-700 md:group-hover:scale-105" decoding="async" fetchPriority={priority ? 'high' : 'auto'} loading={priority ? 'eager' : 'lazy'} src={dummyImage} />
+            <Image
+              alt={property.title}
+              className="object-cover transition duration-700 md:group-hover:scale-105"
+              fill
+              priority={priority}
+              loading={priority ? undefined : 'lazy'}
+              sizes="(max-width: 767px) calc(100vw - 2.5rem), (max-width: 1279px) calc((100vw - 5rem - 1.75rem) / 2), 27rem"
+              src={dummyImage}
+              unoptimized
+            />
           ) : property.featuredImage && typeof property.featuredImage === 'object' ? (
             <Media fill imgClassName="object-cover transition duration-700 md:group-hover:scale-105" loading={priority ? 'eager' : 'lazy'} priority={priority} resource={property.featuredImage} size="(max-width: 767px) calc(100vw - 2.5rem), (max-width: 1279px) calc((100vw - 5rem - 1.75rem) / 2), 27rem" />
           ) : (

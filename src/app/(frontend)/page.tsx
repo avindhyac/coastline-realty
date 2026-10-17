@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { HomeParallaxHero } from '@/components/HomeParallaxHero'
@@ -54,18 +55,24 @@ export default async function Home() {
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="relative min-h-[330px] overflow-hidden bg-[#d9d4ca] sm:mt-20 sm:min-h-[520px]">
-            <img
+            <Image
               alt="Sri Lankan palm beach from Unsplash"
-              className="h-full w-full object-cover"
+              className="object-cover"
+              fill
+              sizes="(min-width: 1024px) 40vw, (min-width: 640px) 50vw, 100vw"
               src={siteImages.beach}
+              unoptimized
             />
           </div>
           <div className="grid gap-5">
             <div className="relative min-h-[210px] overflow-hidden bg-[#d9d4ca] sm:min-h-[250px]">
-              <img
+              <Image
                 alt="Aerial Sri Lankan coastline from Unsplash"
-                className="h-full w-full object-cover"
+                className="object-cover"
+                fill
+                sizes="(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 100vw"
                 src={siteImages.aerial}
+                unoptimized
               />
             </div>
             <div className="border border-[#123f4b]/10 bg-white/55 p-6 shadow-[0_18px_60px_rgba(18,63,75,0.06)] md:p-8">
@@ -78,10 +85,13 @@ export default async function Home() {
               </p>
             </div>
             <div className="relative min-h-[210px] overflow-hidden bg-[#d9d4ca] sm:min-h-[250px]">
-              <img
+              <Image
                 alt="Train crossing a forest bridge in Sri Lanka from Unsplash"
-                className="h-full w-full object-cover"
+                className="object-cover"
+                fill
+                sizes="(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 100vw"
                 src={siteImages.train}
+                unoptimized
               />
             </div>
           </div>
@@ -127,10 +137,13 @@ export default async function Home() {
             </h2>
           </div>
           <div className="relative flex min-h-[320px] items-end overflow-hidden bg-[#d9d4ca] p-8 text-[#073f4d] md:p-12">
-            <img
+            <Image
               alt="Brown wooden table and chairs"
-              className="absolute inset-0 h-full w-full object-cover"
+              className="object-cover"
+              fill
+              sizes="(min-width: 1024px) 42vw, 100vw"
               src={siteImages.dining}
+              unoptimized
             />
             <div className="absolute inset-0 bg-[#073f4d]/20" />
             <Link className="c-button c-button--gooey c-button--light relative" href="/properties">
